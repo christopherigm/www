@@ -1,0 +1,31 @@
+{
+  "id": "https://tanks.iguzman.com.mx/v1/",
+  "start_url": "/",
+  "name": "Tanks Hub",
+  "theme_color": "#4593EF",
+  "background_color": "#fff",
+  "short_name": "Tanks Hub",
+  "description": "Tanks Hub",
+  "orientation": "natural",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/static/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/logo-256.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/logo-128.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+replicaCount: 1
+volumeMountPath: 'shared-master'
+branch: 'main'
+
+image:
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 3000
+
+ingress:
+  enabled: true
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# startupProbe:
+#   exec:
+#     command:
+#     - cat
+#     - /app/media/healthy
+#   failureThreshold: 1
+#   periodSeconds: 10
+
+deployment:
+  nodeSelector:
+    nodeProjects: "real-clients"

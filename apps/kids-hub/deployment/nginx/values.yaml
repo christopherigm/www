@@ -1,0 +1,38 @@
+replicaCount: 5
+apiName: video-downloader-api
+volumeMountPath: 'shared-master'
+
+image:
+  registry: docker.io
+  repository: nginx
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 80
+
+ingress:
+  enabled: false
+  host: myapp.com
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# startupProbe:
+#   exec:
+#     command:
+#     - cat
+#     - /media/healthy
+#   failureThreshold: 1
+#   periodSeconds: 10
+  
+deployment:
+  nodeSelector:
+    heavyWorkerNode: "true"

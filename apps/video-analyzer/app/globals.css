@@ -1,0 +1,89 @@
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.bubble {
+  --r: 1em; /* the radius */
+  --t: 0.6em; /* the size of the tail */
+
+  max-width: 100%;
+  padding: 1em;
+  border-inline: var(--t) solid #0000;
+  border-radius: calc(var(--r) + var(--t)) / var(--r);
+  mask:
+    radial-gradient(100% 100% at var(--_p) 0, #0000 99%, #000 102%) var(--_p)
+      100% / var(--t) var(--t) no-repeat,
+    linear-gradient(#000 0 0) padding-box;
+  background-color: rgba(0, 140, 255, 0.8);
+  color: #fff;
+  /* -webkit-backdrop-filter: blur(10px); */
+  /* backdrop-filter: blur(10px); */
+}
+.left {
+  --_p: 0;
+  border-bottom-left-radius: 0 0;
+  place-self: start;
+}
+.right {
+  --_p: 100%;
+  border-bottom-right-radius: 0 0;
+  place-self: end;
+  mask:
+    radial-gradient(100% 100% at var(--_p) 0, #0000 99%, #000 102%) var(--_p)
+      100% / var(--t) var(--t) no-repeat,
+    linear-gradient(#000 0 0) padding-box;
+  background-color: rgba(0, 98, 11, 0.8);
+  /* -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
+}
+
+.bubble ul,
+ol {
+  margin: 10px 0;
+  padding-left: 15px;
+}
+
+.animated-title {
+  font-weight: normal;
+  color: white;
+  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

@@ -1,0 +1,63 @@
+replicaCount: 3
+volumeMountPath: 'shared-volume'
+nginxServiceName: 'nginx-api'
+
+config:
+  HOST: api.video.iguzman.com.mx
+  DB_HOST: postgres.video-analyzer.svc.cluster.local
+  REDIS_URL: redis-web-app.video-analyzer.svc.cluster.local
+  API_URL: https://api.video.iguzman.com.mx/v1/
+  WEB_APP_URL: https://video.iguzman.com.mx/v1/
+  ENVIRONMENT: production
+  EMAIL_TEMPLATE_COMPANY_NAME: 'Video Analyzer'
+  EMAIL_TEMPLATE_COMPANY_LOGO: 'https://video.iguzman.com.mx/static/logo.png'
+  JWT_ACCESS_EXPIRATION_DAYS: 7
+  JWT_REFRESH_EXPIRATION_DAYS: 30
+  RUN_FIXTURES: false
+
+image:
+  registry: christopherguzman
+  repository: video-analyzer-api
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8000
+
+ingress:
+  host: api.video.iguzman.com.mx
+  enabled: true
+
+resources:
+  limits:
+    cpu: 1
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 512Mi
+
+startupProbe:
+  exec:
+    command:
+      - cat
+      - /media/healthy
+  failureThreshold: 1
+  periodSeconds: 10
+
+livenessProbe:
+  exec:
+    command:
+      - cat
+      - /media/healthy
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+# deployment:
+#   nodeSelector:
+#     nodeName: node1
+
+deployment:
+  nodeSelector:
+    heavyWorkerNode: 'true'

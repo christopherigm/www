@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      volumes:
+      - name: {{ .Chart.Name }}-media-volume
+        hostPath:
+          path: /{{.Values.volumeMountPath}}/{{.Release.Namespace}}/{{ .Chart.Name }}/media
+      containers:
+      - name: {{ .Values.name }}
+        image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        volumeMounts:
+        - name: {{ .Chart.Name }}-media-volume
+          mountPath: /app/media
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+        {{- if .Values.config }}
+        env:
+        {{- range $key, $value := .Values.config }}
+        - name: {{ $key }}
+          valueFrom:
+            configMapKeyRef:
+              name: {{ $.Values.name }}
+              key: {{ $key }}
+        {{- end }}
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        {{- end }}
+        resources:
+          {{- toYaml .Values.resources | nindent 12 }}
+        startupProbe:
+          {{- toYaml .Values.startupProbe | nindent 12 }}
+      nodeSelector:
+          {{- toYaml .Values.deployment.nodeSelector | nindent 12 }}
+      affinity:
+          {{- toYaml .Values.deployment.affinity | nindent 12 }}

@@ -1,0 +1,22 @@
+{
+  "name": "meme-classifier-telegram",
+  "version": "1.0.0",
+  "description": "AI meme classifier",
+  "main": "index.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "npx tsc && node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christopher Guzman",
+  "license": "ISC",
+  "dependencies": {
+    "@telegraf/types": "^8.2.0",
+    "ollama": "^0.5.13",
+    "telegraf": "^4.16.3",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

@@ -1,0 +1,40 @@
+replicaCount: 1
+
+config:
+  OWNCLOUD_DOMAIN: drive.iguzman.com.mx
+  OWNCLOUD_TRUSTED_DOMAINS: drive.iguzman.com.mx
+  OWNCLOUD_DB_TYPE: mysql
+  OWNCLOUD_DB_NAME: owncloud
+  OWNCLOUD_DB_USERNAME: owncloud
+  OWNCLOUD_DB_PASSWORD: owncloud
+  OWNCLOUD_DB_HOST: mariadb.owncloud.svc.cluster.local
+  OWNCLOUD_MYSQL_UTF8MB4: true
+  OWNCLOUD_REDIS_ENABLED: true
+  OWNCLOUD_REDIS_HOST: redis.owncloud.svc.cluster.local
+
+image:
+  registry: docker.io
+  repository: owncloud/server
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080
+
+ingress:
+  enabled: true
+  host: drive.iguzman.com.mx
+
+# resources:
+#   limits:
+#     cpu: 400m
+#     memory: 1G
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
+
+deployment:
+  nodeSelector:
+    nodeName: master

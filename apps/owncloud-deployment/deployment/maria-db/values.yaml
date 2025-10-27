@@ -1,0 +1,36 @@
+replicaCount: 1
+volumeMountPath: "shared-volume"
+
+config:
+  MYSQL_ROOT_PASSWORD: owncloud
+  MYSQL_USER: owncloud
+  MYSQL_PASSWORD: owncloud
+  MYSQL_DATABASE: owncloud
+  MARIADB_AUTO_UPGRADE: 1
+
+image:
+  registry: docker.io
+  repository: mariadb
+  tag: lts
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  externalPort: 3306
+  internalPort: 3306
+
+ingress:
+  enabled: false
+  host: myapp.com
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+deployment:
+  nodeSelector:
+    nodeName: master

@@ -1,0 +1,33 @@
+replicaCount: 1
+volumeMountPath: "shared-volume"
+
+config:
+  OLLAMA_BASE_URL: http://192.168.0.38:11434
+  AIOHTTP_CLIENT_TIMEOUT: 900
+
+image:
+  registry: ghcr.io
+  repository: open-webui/open-webui
+  tag: main
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8080
+
+ingress:
+  enabled: true
+  host: ollama.iguzman.com.mx
+
+resources:
+  # limits:
+  #   cpu: 900m
+  #   memory: 1Gi
+  requests:
+    cpu: 300m
+    memory: 256Mi
+
+deployment:
+  nodeSelector:
+    nodeName: master

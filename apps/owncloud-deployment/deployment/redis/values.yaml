@@ -1,0 +1,29 @@
+replicaCount: 1
+volumeMountPath: "shared-volume"
+
+image:
+  registry: docker.io
+  repository: redis/redis-stack-server
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  externalPort: 6379
+  internalPort: 6379
+
+ingress:
+  enabled: false
+  host: myapp.com
+
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+deployment:
+  nodeSelector:
+    nodeName: master

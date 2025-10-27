@@ -1,0 +1,28 @@
+replicaCount: 1
+name: is-it-healthy-telegram
+
+config:
+  BOT_TOKEN: "1234"
+
+image:
+  registry: christopherguzman
+  repository: is-it-healthy-telegram
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 80
+
+resources:
+  limits:
+    cpu: 256m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+deployment:
+  nodeSelector:
+    nodeProjects: "real-clients"

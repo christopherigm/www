@@ -1,0 +1,50 @@
+replicaCount: 4
+volumeMountPath: 'shared-master'
+nginxServiceName: nginx-web
+branch: 'main'
+
+config:
+  foo: bar
+
+image:
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 3000
+
+ingress:
+  enabled: true
+
+# resources:
+#   limits:
+#     cpu: 300m
+#     memory: 512Mi
+#   requests:
+#     cpu: 100m
+#     memory: 128Mi
+
+startupProbe:
+  exec:
+    command:
+      - cat
+      - /app/media/healthy
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+deployment:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: nodeName
+                operator: In
+                values:
+                  - node1
+                  - node4
+                  - node5
+                  - node6
+  # nodeSelector:
+  #   heavyWorkerNode: 'true'

@@ -1,0 +1,2175 @@
+{
+  "code": 200,
+  "msg": "success",
+  "data": {
+    "alignedWords": [
+      {
+        "word": "[Intro - ",
+        "success": true,
+        "startS": 10.6117,
+        "endS": 10.63683,
+        "palign": 0
+      },
+      {
+        "word": "Dub ",
+        "success": true,
+        "startS": 10.63997,
+        "endS": 10.6494,
+        "palign": 0
+      },
+      {
+        "word": "bassline, ",
+        "success": true,
+        "startS": 10.65254,
+        "endS": 10.68081,
+        "palign": 0
+      },
+      {
+        "word": "skank ",
+        "success": true,
+        "startS": 10.68395,
+        "endS": 10.69966,
+        "palign": 0
+      },
+      {
+        "word": "guitar, ",
+        "success": true,
+        "startS": 10.7028,
+        "endS": 10.72479,
+        "palign": 0
+      },
+      {
+        "word": "distant ",
+        "success": true,
+        "startS": 10.72793,
+        "endS": 10.74992,
+        "palign": 0
+      },
+      {
+        "word": "steel ",
+        "success": true,
+        "startS": 10.75306,
+        "endS": 10.76876,
+        "palign": 0
+      },
+      {
+        "word": "drums]\n\n\n[",
+        "success": true,
+        "startS": 10.7719,
+        "endS": 10.80018,
+        "palign": 0
+      },
+      {
+        "word": "Voice - ",
+        "success": true,
+        "startS": 10.80332,
+        "endS": 10.82531,
+        "palign": 0
+      },
+      {
+        "word": "Deep, ",
+        "success": true,
+        "startS": 10.82845,
+        "endS": 10.84415,
+        "palign": 0
+      },
+      {
+        "word": "resonant ",
+        "success": true,
+        "startS": 10.84729,
+        "endS": 10.87242,
+        "palign": 0
+      },
+      {
+        "word": "reggae ",
+        "success": true,
+        "startS": 10.87557,
+        "endS": 10.89441,
+        "palign": 0
+      },
+      {
+        "word": "vocals ",
+        "success": true,
+        "startS": 10.89755,
+        "endS": 10.9164,
+        "palign": 0
+      },
+      {
+        "word": "with ",
+        "success": true,
+        "startS": 10.91954,
+        "endS": 10.93211,
+        "palign": 0
+      },
+      {
+        "word": "Spanish ",
+        "success": true,
+        "startS": 10.93525,
+        "endS": 10.95724,
+        "palign": 0
+      },
+      {
+        "word": "phrases]\n¡",
+        "success": true,
+        "startS": 10.96038,
+        "endS": 10.98865,
+        "palign": 0
+      },
+      {
+        "word": "Escucha, ",
+        "success": true,
+        "startS": 10.99179,
+        "endS": 11.06383,
+        "palign": 0
+      },
+      {
+        "word": "mi ",
+        "success": true,
+        "startS": 11.11702,
+        "endS": 11.17021,
+        "palign": 0
+      },
+      {
+        "word": "gente, ",
+        "success": true,
+        "startS": 11.26596,
+        "endS": 11.77432,
+        "palign": 0
+      },
+      {
+        "word": "siente ",
+        "success": true,
+        "startS": 11.81991,
+        "endS": 12.04787,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 12.12766,
+        "endS": 12.20745,
+        "palign": 0
+      },
+      {
+        "word": "ritmo!\n",
+        "success": true,
+        "startS": 12.30319,
+        "endS": 12.73936,
+        "palign": 0
+      },
+      {
+        "word": "La ",
+        "success": true,
+        "startS": 12.79255,
+        "endS": 12.84574,
+        "palign": 0
+      },
+      {
+        "word": "gloria ",
+        "success": true,
+        "startS": 12.91223,
+        "endS": 13.24468,
+        "palign": 0
+      },
+      {
+        "word": "llegó, ",
+        "success": true,
+        "startS": 13.34043,
+        "endS": 13.88298,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 13.96277,
+        "endS": 14.04255,
+        "palign": 0
+      },
+      {
+        "word": "nuevo ",
+        "success": true,
+        "startS": 14.12234,
+        "endS": 14.44149,
+        "palign": 0
+      },
+      {
+        "word": "himno.\n",
+        "success": true,
+        "startS": 14.52128,
+        "endS": 15.13298,
+        "palign": 0
+      },
+      {
+        "word": "México ",
+        "success": true,
+        "startS": 15.18617,
+        "endS": 15.55851,
+        "palign": 0
+      },
+      {
+        "word": "al ",
+        "success": true,
+        "startS": 15.6383,
+        "endS": 15.71809,
+        "palign": 0
+      },
+      {
+        "word": "frente, ",
+        "success": true,
+        "startS": 15.77128,
+        "endS": 16.09707,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 16.15691,
+        "endS": 16.2766,
+        "palign": 0
+      },
+      {
+        "word": "fuerza ",
+        "success": true,
+        "startS": 16.31649,
+        "endS": 16.51596,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 16.67553,
+        "endS": 16.67553,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 16.72872,
+        "endS": 16.83511,
+        "palign": 0
+      },
+      {
+        "word": "fe,\n",
+        "success": true,
+        "startS": 16.95479,
+        "endS": 17.2141,
+        "palign": 0
+      },
+      {
+        "word": "Campeón ",
+        "success": true,
+        "startS": 17.27394,
+        "endS": 17.63298,
+        "palign": 0
+      },
+      {
+        "word": "de ",
+        "success": true,
+        "startS": 17.71277,
+        "endS": 17.79255,
+        "palign": 0
+      },
+      {
+        "word": "Oro, ¡",
+        "success": true,
+        "startS": 17.89894,
+        "endS": 18.55053,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 18.57048,
+        "endS": 18.59043,
+        "palign": 0
+      },
+      {
+        "word": "copa ",
+        "success": true,
+        "startS": 18.64362,
+        "endS": 18.90957,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 18.94947,
+        "endS": 18.98936,
+        "palign": 0
+      },
+      {
+        "word": "nuestra, ",
+        "success": true,
+        "startS": 19.03495,
+        "endS": 19.3883,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 19.46809,
+        "endS": 19.46809,
+        "palign": 0
+      },
+      {
+        "word": "se ",
+        "success": true,
+        "startS": 19.58777,
+        "endS": 19.70745,
+        "palign": 0
+      },
+      {
+        "word": "ve!\n\n",
+        "success": true,
+        "startS": 19.82713,
+        "endS": 30.64481,
+        "palign": 0
+      },
+      {
+        "word": "[Verse 1 - Upbeat reggae rhythm, horns enter]\nEdson, ",
+        "success": true,
+        "startS": 30.64807,
+        "endS": 31.2766,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 31.35638,
+        "endS": 31.43617,
+        "palign": 0
+      },
+      {
+        "word": "capitán, ",
+        "success": true,
+        "startS": 31.48936,
+        "endS": 32.11436,
+        "palign": 0
+      },
+      {
+        "word": "firme ",
+        "success": true,
+        "startS": 32.15426,
+        "endS": 32.39362,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 32.4734,
+        "endS": 32.4734,
+        "palign": 0
+      },
+      {
+        "word": "sagaz,\n",
+        "success": true,
+        "startS": 32.55319,
+        "endS": 32.92553,
+        "palign": 0
+      },
+      {
+        "word": "Liderando ",
+        "success": true,
+        "startS": 32.97872,
+        "endS": 33.51064,
+        "palign": 0
+      },
+      {
+        "word": "al ",
+        "success": true,
+        "startS": 33.63032,
+        "endS": 33.75,
+        "palign": 0
+      },
+      {
+        "word": "equipo, ",
+        "success": true,
+        "startS": 33.7766,
+        "endS": 34.10904,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 34.14894,
+        "endS": 34.22872,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 34.3484,
+        "endS": 34.62766,
+        "palign": 0
+      },
+      {
+        "word": "corazón ",
+        "success": true,
+        "startS": 34.65046,
+        "endS": 34.78723,
+        "palign": 0
+      },
+      {
+        "word": "audaz.\n",
+        "success": true,
+        "startS": 34.86702,
+        "endS": 35.31915,
+        "palign": 0
+      },
+      {
+        "word": "Raúl, ",
+        "success": true,
+        "startS": 35.37234,
+        "endS": 35.69149,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 35.71809,
+        "endS": 35.74468,
+        "palign": 0
+      },
+      {
+        "word": "rey ",
+        "success": true,
+        "startS": 35.79787,
+        "endS": 35.90426,
+        "palign": 0
+      },
+      {
+        "word": "del ",
+        "success": true,
+        "startS": 35.95745,
+        "endS": 36.06383,
+        "palign": 0
+      },
+      {
+        "word": "gol, ",
+        "success": true,
+        "startS": 36.14362,
+        "endS": 36.35638,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 36.40957,
+        "endS": 36.46277,
+        "palign": 0
+      },
+      {
+        "word": "talento ",
+        "success": true,
+        "startS": 36.54255,
+        "endS": 36.8617,
+        "palign": 0
+      },
+      {
+        "word": "sin ",
+        "success": true,
+        "startS": 36.96809,
+        "endS": 37.18085,
+        "palign": 0
+      },
+      {
+        "word": "igual,\n",
+        "success": true,
+        "startS": 37.24468,
+        "endS": 37.56383,
+        "palign": 0
+      },
+      {
+        "word": "Cada ",
+        "success": true,
+        "startS": 37.62766,
+        "endS": 37.81915,
+        "palign": 0
+      },
+      {
+        "word": "partido, ",
+        "success": true,
+        "startS": 37.85904,
+        "endS": 38.24468,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 38.27128,
+        "endS": 38.29787,
+        "palign": 0
+      },
+      {
+        "word": "gol, ¡",
+        "success": true,
+        "startS": 38.40426,
+        "endS": 38.69681,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 38.7367,
+        "endS": 38.7766,
+        "palign": 0
+      },
+      {
+        "word": "show ",
+        "success": true,
+        "startS": 38.85638,
+        "endS": 39.09574,
+        "palign": 0
+      },
+      {
+        "word": "celestial!\n",
+        "success": true,
+        "startS": 39.14894,
+        "endS": 39.75399,
+        "palign": 0
+      },
+      {
+        "word": "Diez ",
+        "success": true,
+        "startS": 39.77394,
+        "endS": 40.05319,
+        "palign": 0
+      },
+      {
+        "word": "veces ",
+        "success": true,
+        "startS": 40.13298,
+        "endS": 40.45213,
+        "palign": 0
+      },
+      {
+        "word": "en ",
+        "success": true,
+        "startS": 40.57181,
+        "endS": 40.69149,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 40.77128,
+        "endS": 40.85106,
+        "palign": 0
+      },
+      {
+        "word": "red, ",
+        "success": true,
+        "startS": 40.95745,
+        "endS": 42.04787,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 42.12766,
+        "endS": 42.20745,
+        "palign": 0
+      },
+      {
+        "word": "cifra ",
+        "success": true,
+        "startS": 42.28723,
+        "endS": 42.68617,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 42.80585,
+        "endS": 42.92553,
+        "palign": 0
+      },
+      {
+        "word": "real,\n",
+        "success": true,
+        "startS": 43.02527,
+        "endS": 44.30851,
+        "palign": 0
+      },
+      {
+        "word": "El ",
+        "success": true,
+        "startS": 44.41489,
+        "endS": 44.52128,
+        "palign": 0
+      },
+      {
+        "word": "mejor ",
+        "success": true,
+        "startS": 44.56915,
+        "endS": 44.76064,
+        "palign": 0
+      },
+      {
+        "word": "anotador, ¡",
+        "success": true,
+        "startS": 44.84043,
+        "endS": 46.67553,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 46.71543,
+        "endS": 46.75532,
+        "palign": 0
+      },
+      {
+        "word": "ídolo ",
+        "success": true,
+        "startS": 46.91489,
+        "endS": 47.55319,
+        "palign": 0
+      },
+      {
+        "word": "total!\n\n[",
+        "success": true,
+        "startS": 47.64894,
+        "endS": 49.9611,
+        "palign": 0
+      },
+      {
+        "word": "Chorus - ",
+        "success": true,
+        "startS": 49.96586,
+        "endS": 50.00397,
+        "palign": 0
+      },
+      {
+        "word": "Full ",
+        "success": true,
+        "startS": 50.00873,
+        "endS": 50.02779,
+        "palign": 0
+      },
+      {
+        "word": "reggae ",
+        "success": true,
+        "startS": 50.03255,
+        "endS": 50.06113,
+        "palign": 0
+      },
+      {
+        "word": "fusion, ",
+        "success": true,
+        "startS": 50.06589,
+        "endS": 50.09924,
+        "palign": 0
+      },
+      {
+        "word": "layered ",
+        "success": true,
+        "startS": 50.104,
+        "endS": 50.13735,
+        "palign": 0
+      },
+      {
+        "word": "vocals, ",
+        "success": true,
+        "startS": 50.14211,
+        "endS": 50.17545,
+        "palign": 0
+      },
+      {
+        "word": "driving ",
+        "success": true,
+        "startS": 50.18022,
+        "endS": 50.21356,
+        "palign": 0
+      },
+      {
+        "word": "rhythm]\n¡",
+        "success": true,
+        "startS": 50.21832,
+        "endS": 50.25643,
+        "palign": 0
+      },
+      {
+        "word": "El ",
+        "success": true,
+        "startS": 50.26119,
+        "endS": 50.26596,
+        "palign": 0
+      },
+      {
+        "word": "Tri, ",
+        "success": true,
+        "startS": 50.37234,
+        "endS": 50.66489,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 50.74468,
+        "endS": 50.82447,
+        "palign": 0
+      },
+      {
+        "word": "Tri, ",
+        "success": true,
+        "startS": 50.93085,
+        "endS": 51.18351,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 51.2234,
+        "endS": 51.30319,
+        "palign": 0
+      },
+      {
+        "word": "fuego ",
+        "success": true,
+        "startS": 51.38298,
+        "endS": 51.70213,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 51.8617,
+        "endS": 51.8617,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 51.96809,
+        "endS": 52.42021,
+        "palign": 0
+      },
+      {
+        "word": "pasión!\n",
+        "success": true,
+        "startS": 52.5133,
+        "endS": 54.49468,
+        "palign": 0
+      },
+      {
+        "word": "Campeón ",
+        "success": true,
+        "startS": 54.57447,
+        "endS": 55.13298,
+        "palign": 0
+      },
+      {
+        "word": "de ",
+        "success": true,
+        "startS": 55.21277,
+        "endS": 55.29255,
+        "palign": 0
+      },
+      {
+        "word": "Oro, ¡",
+        "success": true,
+        "startS": 55.39894,
+        "endS": 55.85106,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 55.89096,
+        "endS": 55.93085,
+        "palign": 0
+      },
+      {
+        "word": "nueva ",
+        "success": true,
+        "startS": 55.99468,
+        "endS": 56.25,
+        "palign": 0
+      },
+      {
+        "word": "generación!\n",
+        "success": true,
+        "startS": 56.35638,
+        "endS": 59.06915,
+        "palign": 0
+      },
+      {
+        "word": "Raúl, ",
+        "success": true,
+        "startS": 59.17553,
+        "endS": 59.64096,
+        "palign": 0
+      },
+      {
+        "word": "Edson, ",
+        "success": true,
+        "startS": 59.68085,
+        "endS": 60.19947,
+        "palign": 0
+      },
+      {
+        "word": "Gilberto, ",
+        "success": true,
+        "startS": 60.23936,
+        "endS": 60.85106,
+        "palign": 0
+      },
+      {
+        "word": "Chino, ",
+        "success": true,
+        "startS": 60.90426,
+        "endS": 61.25,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 61.30319,
+        "endS": 61.35638,
+        "palign": 0
+      },
+      {
+        "word": "unión,\n¡",
+        "success": true,
+        "startS": 61.43617,
+        "endS": 63.86968,
+        "palign": 0
+      },
+      {
+        "word": "México ",
+        "success": true,
+        "startS": 63.92952,
+        "endS": 64.30851,
+        "palign": 0
+      },
+      {
+        "word": "al ",
+        "success": true,
+        "startS": 64.3883,
+        "endS": 64.46809,
+        "palign": 0
+      },
+      {
+        "word": "mundo, ",
+        "success": true,
+        "startS": 64.56383,
+        "endS": 65.82447,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 65.90426,
+        "endS": 66.06383,
+        "palign": 0
+      },
+      {
+        "word": "fuerza ",
+        "success": true,
+        "startS": 66.15691,
+        "endS": 66.8617,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 67.02128,
+        "endS": 67.18085,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 67.28723,
+        "endS": 68.21809,
+        "palign": 0
+      },
+      {
+        "word": "razón!\n\n",
+        "success": true,
+        "startS": 68.31383,
+        "endS": 79.39452,
+        "palign": 0
+      },
+      {
+        "word": "[Verse 2 - Skank guitar becomes more prominent, percussion intensifies]\nGilberto, ",
+        "success": true,
+        "startS": 79.39762,
+        "endS": 80,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 80.05319,
+        "endS": 80.10638,
+        "palign": 0
+      },
+      {
+        "word": "promesa, ",
+        "success": true,
+        "startS": 80.20612,
+        "endS": 80.79787,
+        "palign": 0
+      },
+      {
+        "word": "joven ",
+        "success": true,
+        "startS": 80.85106,
+        "endS": 81.06383,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 81.2234,
+        "endS": 81.2234,
+        "palign": 0
+      },
+      {
+        "word": "veloz,\n",
+        "success": true,
+        "startS": 81.30319,
+        "endS": 81.66223,
+        "palign": 0
+      },
+      {
+        "word": "Con ",
+        "success": true,
+        "startS": 81.70213,
+        "endS": 81.78191,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 81.82181,
+        "endS": 81.8617,
+        "palign": 0
+      },
+      {
+        "word": "magia ",
+        "success": true,
+        "startS": 81.91489,
+        "endS": 82.26064,
+        "palign": 0
+      },
+      {
+        "word": "del ",
+        "success": true,
+        "startS": 82.31383,
+        "endS": 82.42021,
+        "palign": 0
+      },
+      {
+        "word": "fútbol, ",
+        "success": true,
+        "startS": 82.5,
+        "endS": 82.85904,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 82.89894,
+        "endS": 82.97872,
+        "palign": 0
+      },
+      {
+        "word": "futuro ",
+        "success": true,
+        "startS": 83.05851,
+        "endS": 83.45745,
+        "palign": 0
+      },
+      {
+        "word": "feroz.\n",
+        "success": true,
+        "startS": 83.61702,
+        "endS": 83.90957,
+        "palign": 0
+      },
+      {
+        "word": "Chino ",
+        "success": true,
+        "startS": 83.96277,
+        "endS": 84.17553,
+        "palign": 0
+      },
+      {
+        "word": "Huerta, ",
+        "success": true,
+        "startS": 84.29521,
+        "endS": 84.93351,
+        "palign": 0
+      },
+      {
+        "word": "sandó ",
+        "success": true,
+        "startS": 84.9734,
+        "endS": 85.29255,
+        "palign": 0
+      },
+      {
+        "word": "le ",
+        "success": true,
+        "startS": 85.41223,
+        "endS": 85.6117,
+        "palign": 0
+      },
+      {
+        "word": "mejor ",
+        "success": true,
+        "startS": 85.64362,
+        "endS": 85.77128,
+        "palign": 0
+      },
+      {
+        "word": "de ",
+        "success": true,
+        "startS": 85.85106,
+        "endS": 85.93085,
+        "palign": 0
+      },
+      {
+        "word": "sí,\n",
+        "success": true,
+        "startS": 86.05053,
+        "endS": 86.21011,
+        "palign": 0
+      },
+      {
+        "word": "Defensa ",
+        "success": true,
+        "startS": 86.25,
+        "endS": 86.64894,
+        "palign": 0
+      },
+      {
+        "word": "impenetrable, ¡",
+        "success": true,
+        "startS": 86.67553,
+        "endS": 87.36702,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 87.40691,
+        "endS": 87.44681,
+        "palign": 0
+      },
+      {
+        "word": "muro ",
+        "success": true,
+        "startS": 87.5,
+        "endS": 87.62633,
+        "palign": 0
+      },
+      {
+        "word": "para ",
+        "success": true,
+        "startS": 87.64628,
+        "endS": 87.76596,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 87.80585,
+        "endS": 87.84574,
+        "palign": 0
+      },
+      {
+        "word": "rival!\n",
+        "success": true,
+        "startS": 87.92553,
+        "endS": 88.30452,
+        "palign": 0
+      },
+      {
+        "word": "Con ",
+        "success": true,
+        "startS": 88.36436,
+        "endS": 88.48404,
+        "palign": 0
+      },
+      {
+        "word": "estrategia ",
+        "success": true,
+        "startS": 88.51064,
+        "endS": 89.20213,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 89.3617,
+        "endS": 89.3617,
+        "palign": 0
+      },
+      {
+        "word": "coraje, ",
+        "success": true,
+        "startS": 89.46144,
+        "endS": 90.69149,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 90.74468,
+        "endS": 90.79787,
+        "palign": 0
+      },
+      {
+        "word": "defensa ",
+        "success": true,
+        "startS": 90.85106,
+        "endS": 91.2766,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 91.35638,
+        "endS": 91.43617,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 91.51596,
+        "endS": 91.59574,
+        "palign": 0
+      },
+      {
+        "word": "tesoro,\n¡",
+        "success": true,
+        "startS": 91.67553,
+        "endS": 93.1117,
+        "palign": 0
+      },
+      {
+        "word": "El ",
+        "success": true,
+        "startS": 93.19149,
+        "endS": 93.27128,
+        "palign": 0
+      },
+      {
+        "word": "Tri ",
+        "success": true,
+        "startS": 93.31117,
+        "endS": 93.51064,
+        "palign": 0
+      },
+      {
+        "word": "se ",
+        "success": true,
+        "startS": 93.59043,
+        "endS": 93.82979,
+        "palign": 0
+      },
+      {
+        "word": "defiende, ",
+        "success": true,
+        "startS": 93.90957,
+        "endS": 95.26596,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 95.34574,
+        "endS": 95.50532,
+        "palign": 0
+      },
+      {
+        "word": "ritmo ",
+        "success": true,
+        "startS": 95.60106,
+        "endS": 96.2234,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 96.38298,
+        "endS": 96.62234,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 96.72872,
+        "endS": 97.18085,
+        "palign": 0
+      },
+      {
+        "word": "decoro!\n\n[",
+        "success": true,
+        "startS": 97.30053,
+        "endS": 108.83535,
+        "palign": 0
+      },
+      {
+        "word": "Instrumental ",
+        "success": true,
+        "startS": 108.83721,
+        "endS": 108.85948,
+        "palign": 0
+      },
+      {
+        "word": "Break - ",
+        "success": true,
+        "startS": 108.86133,
+        "endS": 108.87432,
+        "palign": 0
+      },
+      {
+        "word": "Dub ",
+        "success": true,
+        "startS": 108.87618,
+        "endS": 108.88174,
+        "palign": 0
+      },
+      {
+        "word": "style, ",
+        "success": true,
+        "startS": 108.8836,
+        "endS": 108.89473,
+        "palign": 0
+      },
+      {
+        "word": "heavy ",
+        "success": true,
+        "startS": 108.89659,
+        "endS": 108.90586,
+        "palign": 0
+      },
+      {
+        "word": "bass, ",
+        "success": true,
+        "startS": 108.90772,
+        "endS": 108.917,
+        "palign": 0
+      },
+      {
+        "word": "delay ",
+        "success": true,
+        "startS": 108.91885,
+        "endS": 108.92813,
+        "palign": 0
+      },
+      {
+        "word": "guitar, ",
+        "success": true,
+        "startS": 108.92999,
+        "endS": 108.94297,
+        "palign": 0
+      },
+      {
+        "word": "steel ",
+        "success": true,
+        "startS": 108.94483,
+        "endS": 108.95411,
+        "palign": 0
+      },
+      {
+        "word": "drums]\n\n\n",
+        "success": true,
+        "startS": 108.95596,
+        "endS": 108.97081,
+        "palign": 0
+      },
+      {
+        "word": "[Verse 3 - Reggae roots influence, soulful vocals]\nEl ",
+        "success": true,
+        "startS": 108.97266,
+        "endS": 109.06915,
+        "palign": 0
+      },
+      {
+        "word": "juego ",
+        "success": true,
+        "startS": 109.13298,
+        "endS": 109.3883,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 109.46809,
+        "endS": 109.54787,
+        "palign": 0
+      },
+      {
+        "word": "arte, ",
+        "success": true,
+        "startS": 109.62766,
+        "endS": 109.9734,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 110.07979,
+        "endS": 110.18617,
+        "palign": 0
+      },
+      {
+        "word": "pasión, ",
+        "success": true,
+        "startS": 110.21277,
+        "endS": 110.39894,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 110.45213,
+        "endS": 110.50532,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 110.58511,
+        "endS": 110.66489,
+        "palign": 0
+      },
+      {
+        "word": "clamor,\n",
+        "success": true,
+        "startS": 110.74468,
+        "endS": 111.14362,
+        "palign": 0
+      },
+      {
+        "word": "Unidos ",
+        "success": true,
+        "startS": 111.2234,
+        "endS": 111.46277,
+        "palign": 0
+      },
+      {
+        "word": "como ",
+        "success": true,
+        "startS": 111.52261,
+        "endS": 111.70213,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 111.82181,
+        "endS": 111.94149,
+        "palign": 0
+      },
+      {
+        "word": "equipo, ",
+        "success": true,
+        "startS": 111.96809,
+        "endS": 112.28059,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 112.30053,
+        "endS": 112.34043,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 112.42021,
+        "endS": 112.5,
+        "palign": 0
+      },
+      {
+        "word": "mismo ",
+        "success": true,
+        "startS": 112.57979,
+        "endS": 112.89894,
+        "palign": 0
+      },
+      {
+        "word": "valor.\n",
+        "success": true,
+        "startS": 112.97872,
+        "endS": 113.32447,
+        "palign": 0
+      },
+      {
+        "word": "La ",
+        "success": true,
+        "startS": 113.35106,
+        "endS": 113.37766,
+        "palign": 0
+      },
+      {
+        "word": "afición ",
+        "success": true,
+        "startS": 113.49734,
+        "endS": 113.85638,
+        "palign": 0
+      },
+      {
+        "word": "vibrando, ",
+        "success": true,
+        "startS": 113.97606,
+        "endS": 114.45479,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 114.49468,
+        "endS": 114.57447,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 114.69415,
+        "endS": 114.9734,
+        "palign": 0
+      },
+      {
+        "word": "corazón ",
+        "success": true,
+        "startS": 114.9962,
+        "endS": 115.13298,
+        "palign": 0
+      },
+      {
+        "word": "en ",
+        "success": true,
+        "startS": 115.21277,
+        "endS": 115.29255,
+        "palign": 0
+      },
+      {
+        "word": "pie,\n",
+        "success": true,
+        "startS": 115.37234,
+        "endS": 115.59574,
+        "palign": 0
+      },
+      {
+        "word": "Celebrando ",
+        "success": true,
+        "startS": 115.65957,
+        "endS": 116.17021,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 116.21011,
+        "endS": 116.25,
+        "palign": 0
+      },
+      {
+        "word": "victoria, ¡",
+        "success": true,
+        "startS": 116.32979,
+        "endS": 116.80851,
+        "palign": 0
+      },
+      {
+        "word": "un ",
+        "success": true,
+        "startS": 116.80851,
+        "endS": 116.8883,
+        "palign": 0
+      },
+      {
+        "word": "momento ",
+        "success": true,
+        "startS": 116.94529,
+        "endS": 117.28723,
+        "palign": 0
+      },
+      {
+        "word": "que ",
+        "success": true,
+        "startS": 117.31383,
+        "endS": 117.36702,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 117.44681,
+        "endS": 117.5266,
+        "palign": 0
+      },
+      {
+        "word": "rey!\n",
+        "success": true,
+        "startS": 117.57979,
+        "endS": 117.73936,
+        "palign": 0
+      },
+      {
+        "word": "Desde ",
+        "success": true,
+        "startS": 117.79255,
+        "endS": 118.00532,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 118.08511,
+        "endS": 118.16489,
+        "palign": 0
+      },
+      {
+        "word": "cancha ",
+        "success": true,
+        "startS": 118.24468,
+        "endS": 118.56383,
+        "palign": 0
+      },
+      {
+        "word": "al ",
+        "success": true,
+        "startS": 118.60372,
+        "endS": 118.64362,
+        "palign": 0
+      },
+      {
+        "word": "mundo, ",
+        "success": true,
+        "startS": 118.73936,
+        "endS": 120.07979,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 120.15957,
+        "endS": 120.23936,
+        "palign": 0
+      },
+      {
+        "word": "bandera ",
+        "success": true,
+        "startS": 120.3391,
+        "endS": 120.87766,
+        "palign": 0
+      },
+      {
+        "word": "alza,\n¡",
+        "success": true,
+        "startS": 120.99734,
+        "endS": 122.71277,
+        "palign": 0
+      },
+      {
+        "word": "México ",
+        "success": true,
+        "startS": 122.75266,
+        "endS": 123.19149,
+        "palign": 0
+      },
+      {
+        "word": "campeón, ",
+        "success": true,
+        "startS": 123.27128,
+        "endS": 124.62766,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 124.70745,
+        "endS": 124.86702,
+        "palign": 0
+      },
+      {
+        "word": "orgullo ",
+        "success": true,
+        "startS": 124.92686,
+        "endS": 125.34574,
+        "palign": 0
+      },
+      {
+        "word": "ganando ",
+        "success": true,
+        "startS": 125.39894,
+        "endS": 126.06383,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 126.18351,
+        "endS": 126.62234,
+        "palign": 0
+      },
+      {
+        "word": "campaña!\n\n[",
+        "success": true,
+        "startS": 126.72872,
+        "endS": 129.18625,
+        "palign": 0
+      },
+      {
+        "word": "Chorus - ",
+        "success": true,
+        "startS": 129.18982,
+        "endS": 129.2184,
+        "palign": 0
+      },
+      {
+        "word": "Full ",
+        "success": true,
+        "startS": 129.22198,
+        "endS": 129.23627,
+        "palign": 0
+      },
+      {
+        "word": "reggae ",
+        "success": true,
+        "startS": 129.23984,
+        "endS": 129.26127,
+        "palign": 0
+      },
+      {
+        "word": "fusion, ",
+        "success": true,
+        "startS": 129.26485,
+        "endS": 129.28985,
+        "palign": 0
+      },
+      {
+        "word": "layered ",
+        "success": true,
+        "startS": 129.29343,
+        "endS": 129.31843,
+        "palign": 0
+      },
+      {
+        "word": "vocals, ",
+        "success": true,
+        "startS": 129.32201,
+        "endS": 129.34701,
+        "palign": 0
+      },
+      {
+        "word": "driving ",
+        "success": true,
+        "startS": 129.35059,
+        "endS": 129.3756,
+        "palign": 0
+      },
+      {
+        "word": "rhythm]\n¡",
+        "success": true,
+        "startS": 129.37917,
+        "endS": 129.40775,
+        "palign": 0
+      },
+      {
+        "word": "El ",
+        "success": true,
+        "startS": 129.41132,
+        "endS": 129.41489,
+        "palign": 0
+      },
+      {
+        "word": "Tri, ",
+        "success": true,
+        "startS": 129.52128,
+        "endS": 129.89362,
+        "palign": 0
+      },
+      {
+        "word": "el ",
+        "success": true,
+        "startS": 129.9734,
+        "endS": 130.05319,
+        "palign": 0
+      },
+      {
+        "word": "Tri, ",
+        "success": true,
+        "startS": 130.15957,
+        "endS": 130.41223,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 130.45213,
+        "endS": 130.53191,
+        "palign": 0
+      },
+      {
+        "word": "fuego ",
+        "success": true,
+        "startS": 130.59574,
+        "endS": 130.85106,
+        "palign": 0
+      },
+      {
+        "word": "y ",
+        "success": true,
+        "startS": 131.01064,
+        "endS": 131.01064,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 131.11702,
+        "endS": 131.64894,
+        "palign": 0
+      },
+      {
+        "word": "pasión!\n",
+        "success": true,
+        "startS": 131.74202,
+        "endS": 133.7234,
+        "palign": 0
+      },
+      {
+        "word": "Campeón ",
+        "success": true,
+        "startS": 133.80319,
+        "endS": 134.3617,
+        "palign": 0
+      },
+      {
+        "word": "de ",
+        "success": true,
+        "startS": 134.44149,
+        "endS": 134.52128,
+        "palign": 0
+      },
+      {
+        "word": "Oro, ¡",
+        "success": true,
+        "startS": 134.62766,
+        "endS": 135,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 135.03989,
+        "endS": 135.07979,
+        "palign": 0
+      },
+      {
+        "word": "nueva ",
+        "success": true,
+        "startS": 135.15957,
+        "endS": 135.47872,
+        "palign": 0
+      },
+      {
+        "word": "generación!\n",
+        "success": true,
+        "startS": 135.58511,
+        "endS": 138.48404,
+        "palign": 0
+      },
+      {
+        "word": "Raúl, ",
+        "success": true,
+        "startS": 138.53723,
+        "endS": 138.94947,
+        "palign": 0
+      },
+      {
+        "word": "Edson, ",
+        "success": true,
+        "startS": 138.98936,
+        "endS": 139.42819,
+        "palign": 0
+      },
+      {
+        "word": "Gilberto, ",
+        "success": true,
+        "startS": 139.46809,
+        "endS": 140.15957,
+        "palign": 0
+      },
+      {
+        "word": "Chino, ",
+        "success": true,
+        "startS": 140.21277,
+        "endS": 140.55851,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 140.6117,
+        "endS": 140.66489,
+        "palign": 0
+      },
+      {
+        "word": "unión,\n¡",
+        "success": true,
+        "startS": 140.74468,
+        "endS": 143.0984,
+        "palign": 0
+      },
+      {
+        "word": "México ",
+        "success": true,
+        "startS": 143.15824,
+        "endS": 143.53723,
+        "palign": 0
+      },
+      {
+        "word": "al ",
+        "success": true,
+        "startS": 143.61702,
+        "endS": 143.69681,
+        "palign": 0
+      },
+      {
+        "word": "mundo, ",
+        "success": true,
+        "startS": 143.79255,
+        "endS": 145.07314,
+        "palign": 0
+      },
+      {
+        "word": "con ",
+        "success": true,
+        "startS": 145.17287,
+        "endS": 145.37234,
+        "palign": 0
+      },
+      {
+        "word": "fuerza ",
+        "success": true,
+        "startS": 145.46543,
+        "endS": 146.17021,
+        "palign": 0
+      },
+      {
+        "word": "ganando ",
+        "success": true,
+        "startS": 146.25,
+        "endS": 146.96809,
+        "palign": 0
+      },
+      {
+        "word": "la ",
+        "success": true,
+        "startS": 147.08777,
+        "endS": 147.28723,
+        "palign": 0
+      },
+      {
+        "word": "campaña!\n\n[",
+        "success": true,
+        "startS": 147.36702,
+        "endS": 151.77028,
+        "palign": 0
+      },
+      {
+        "word": "Outro - ",
+        "success": true,
+        "startS": 151.77527,
+        "endS": 151.81017,
+        "palign": 0
+      },
+      {
+        "word": "Dub ",
+        "success": true,
+        "startS": 151.81516,
+        "endS": 151.83012,
+        "palign": 0
+      },
+      {
+        "word": "style, ",
+        "success": true,
+        "startS": 151.83511,
+        "endS": 151.86503,
+        "palign": 0
+      },
+      {
+        "word": "fading ",
+        "success": true,
+        "startS": 151.87001,
+        "endS": 151.89993,
+        "palign": 0
+      },
+      {
+        "word": "out ",
+        "success": true,
+        "startS": 151.90492,
+        "endS": 151.91988,
+        "palign": 0
+      },
+      {
+        "word": "with ",
+        "success": true,
+        "startS": 151.92487,
+        "endS": 151.94481,
+        "palign": 0
+      },
+      {
+        "word": "steel ",
+        "success": true,
+        "startS": 151.9498,
+        "endS": 151.97473,
+        "palign": 0
+      },
+      {
+        "word": "drums ",
+        "success": true,
+        "startS": 151.97972,
+        "endS": 152.00465,
+        "palign": 0
+      },
+      {
+        "word": "and ",
+        "success": true,
+        "startS": 152.00964,
+        "endS": 152.0246,
+        "palign": 0
+      },
+      {
+        "word": "echo]\n¡",
+        "success": true,
+        "startS": 152.02959,
+        "endS": 152.05951,
+        "palign": 0
+      },
+      {
+        "word": "Campeón! ¡",
+        "success": true,
+        "startS": 152.06449,
+        "endS": 154.06915,
+        "palign": 0
+      },
+      {
+        "word": "México! ¡",
+        "success": true,
+        "startS": 154.10904,
+        "endS": 156.34309,
+        "palign": 0
+      },
+      {
+        "word": "El ",
+        "success": true,
+        "startS": 156.44282,
+        "endS": 156.62234,
+        "palign": 0
+      },
+      {
+        "word": "Tri!\n\n[",
+        "success": true,
+        "startS": 156.72872,
+        "endS": 158.64824,
+        "palign": 0
+      },
+      {
+        "word": "Repeat ",
+        "success": true,
+        "startS": 158.65865,
+        "endS": 158.72109,
+        "palign": 0
+      },
+      {
+        "word": "and ",
+        "success": true,
+        "startS": 158.7315,
+        "endS": 158.76272,
+        "palign": 0
+      },
+      {
+        "word": "fade]\n¡",
+        "success": true,
+        "startS": 158.77313,
+        "endS": 158.83557,
+        "palign": 0
+      },
+      {
+        "word": "Raúl! ¡",
+        "success": true,
+        "startS": 158.84598,
+        "endS": 159.30851,
+        "palign": 0
+      },
+      {
+        "word": "Edson! ¡",
+        "success": true,
+        "startS": 159.33511,
+        "endS": 159.78723,
+        "palign": 0
+      },
+      {
+        "word": "Gilberto! ¡",
+        "success": true,
+        "startS": 159.81383,
+        "endS": 160.6117,
+        "palign": 0
+      },
+      {
+        "word": "Chino!\n¡",
+        "success": true,
+        "startS": 160.6516,
+        "endS": 161.05053,
+        "palign": 0
+      },
+      {
+        "word": "La ",
+        "success": true,
+        "startS": 161.11037,
+        "endS": 161.17021,
+        "palign": 0
+      },
+      {
+        "word": "gloria ",
+        "success": true,
+        "startS": 161.2234,
+        "endS": 161.48936,
+        "palign": 0
+      },
+      {
+        "word": "es ",
+        "success": true,
+        "startS": 161.60904,
+        "endS": 161.72872,
+        "palign": 0
+      },
+      {
+        "word": "nuestra! ¡",
+        "success": true,
+        "startS": 161.81991,
+        "endS": 163.49734,
+        "palign": 0
+      },
+      {
+        "word": "Siempre!\n\n",
+        "success": true,
+        "startS": 163.58378,
+        "endS": 164.3617,
+        "palign": 0
+      }
+    ],
+    "waveformData": [
+      0.00006, 0, 0.03296, 0.03355, 0.05252, 0.06312, 0.06913, 0.12235, 0.11586,
+      0.07125, 0.12303, 0.02413, 0.07247, 0.14245, 0.08756, 0.05608, 0.12387,
+      0.07686, 0.07755, 0.13369, 0.06626, 0.08276, 0.08419, 0.09047, 0.12006,
+      0.08965, 0.05577, 0.12738, 0.0854, 0.05742, 0.12659, 0.0668, 0.05244,
+      0.11076, 0.05899, 0.05514, 0.13707, 0.04819, 0.09135, 0.08833, 0.08123,
+      0.11911, 0.08766, 0.06804, 0.11727, 0.08519, 0.1451, 0.13313, 0.09587,
+      0.09261, 0.11761, 0.10646, 0.09496, 0.13609, 0.09405, 0.11656, 0.07316,
+      0.10434, 0.12821, 0.1029, 0.09504, 0.12327, 0.08789, 0.10468, 0.14315,
+      0.0994, 0.07235, 0.14043, 0.06805, 0.10269, 0.14312, 0.09184, 0.1202,
+      0.11944, 0.05867, 0.12752, 0.09378, 0.08978, 0.12705, 0.06239, 0.07925,
+      0.1396, 0.08331, 0.07583, 0.14168, 0.05967, 0.08875, 0.14446, 0.10215,
+      0.13189, 0.09007, 0.11604, 0.12094, 0.08552, 0.09612, 0.12761, 0.07628,
+      0.10528, 0.1487, 0.13361, 0.10813, 0.1471, 0.12011, 0.13266, 0.11971,
+      0.10865, 0.11414, 0.14439, 0.155, 0.13956, 0.1012, 0.07842, 0.1082,
+      0.05409, 0.09392, 0.12932, 0.0831, 0.0705, 0.1218, 0.09257, 0.09777,
+      0.09992, 0.06399, 0.10606, 0.02064, 0.08281, 0.12375, 0.08207, 0.08248,
+      0.12794, 0.07996, 0.06547, 0.12827, 0.07138, 0.05998, 0.10286, 0.06506,
+      0.10352, 0.09492, 0.06326, 0.11615, 0.05612, 0.08126, 0.11817, 0.11657,
+      0.12695, 0.07852, 0.13523, 0.07853, 0.13957, 0.05347, 0.00257, 0.0009,
+      0.06385, 0.11425, 0.11956, 0.06964, 0.14076, 0.05482, 0.12214, 0.13048,
+      0.10171, 0.08242, 0.13062, 0.08018, 0.10442, 0.15297, 0.11656, 0.07491,
+      0.12969, 0.09797, 0.11541, 0.11017, 0.07605, 0.1363, 0.08846, 0.11205,
+      0.1587, 0.10214, 0.08087, 0.15619, 0.08203, 0.08294, 0.14306, 0.07906,
+      0.10839, 0.12497, 0.0844, 0.13515, 0.10116, 0.08155, 0.14508, 0.09403,
+      0.13448, 0.13412, 0.11659, 0.11904, 0.15965, 0.12263, 0.09727, 0.14729,
+      0.08081, 0.10694, 0.10929, 0.13007, 0.15818, 0.09683, 0.07532, 0.12605,
+      0.07039, 0.10962, 0.12824, 0.0964, 0.10887, 0.12077, 0.13284, 0.11902,
+      0.14457, 0.05754, 0.10611, 0.09229, 0.08928, 0.12051, 0.1208, 0.08484,
+      0.13565, 0.10234, 0.13914, 0.15616, 0.06452, 0.03335, 0.12061, 0.08714,
+      0.0764, 0.15117, 0.10742, 0.13311, 0.10704, 0.12493, 0.11219, 0.13535,
+      0.14381, 0.12988, 0.11534, 0.13937, 0.14478, 0.12693, 0.03136, 0.04068,
+      0.08577, 0.07519, 0.16585, 0.0826, 0.13625, 0.09913, 0.12332, 0.14367,
+      0.10789, 0.10515, 0.14059, 0.08827, 0.11159, 0.17243, 0.15404, 0.13146,
+      0.17837, 0.16005, 0.14263, 0.17018, 0.11096, 0.1209, 0.08642, 0.10249,
+      0.13716, 0.11045, 0.11393, 0.15747, 0.11588, 0.10123, 0.15998, 0.09084,
+      0.07892, 0.15321, 0.11777, 0.10819, 0.16259, 0.13358, 0.15888, 0.13377,
+      0.16913, 0.16786, 0.13175, 0.08223, 0.1358, 0.12143, 0.12781, 0.17089,
+      0.0809, 0.06757, 0.14985, 0.09561, 0.13414, 0.13274, 0.07308, 0.14282,
+      0.10551, 0.12814, 0.1519, 0.13056, 0.11081, 0.15901, 0.13653, 0.1317,
+      0.17113, 0.12041, 0.06944, 0.16297, 0.06672, 0.13313, 0.13394, 0.11106,
+      0.14299, 0.07351, 0.14076, 0.14563, 0.07897, 0.06069, 0.12994, 0.09753,
+      0.07363, 0.1651, 0.09343, 0.07582, 0.14932, 0.1136, 0.12706, 0.14058,
+      0.07553, 0.14451, 0.09438, 0.11423, 0.1598, 0.13715, 0.12136, 0.16756,
+      0.13761, 0.13834, 0.1747, 0.12638, 0.11566, 0.12544, 0.1074, 0.12049,
+      0.11197, 0.0698, 0.129, 0.03004, 0.10596, 0.14282, 0.08526, 0.06641,
+      0.12934, 0.09642, 0.08029, 0.15477, 0.06469, 0.09177, 0.08613, 0.0911,
+      0.12304, 0.10394, 0.04678, 0.13315, 0.08892, 0.048, 0.13848, 0.0807,
+      0.05587, 0.12215, 0.08277, 0.06576, 0.15367, 0.05449, 0.11347, 0.07797,
+      0.09382, 0.1251, 0.1061, 0.05442, 0.12484, 0.07614, 0.11824, 0.13996,
+      0.09234, 0.07531, 0.14517, 0.08548, 0.08758, 0.15418, 0.10202, 0.13916,
+      0.07812, 0.11743, 0.14239, 0.10472, 0.10785, 0.14322, 0.06862, 0.11986,
+      0.14968, 0.12269, 0.05785, 0.1379, 0.11176, 0.08265, 0.16621, 0.09928,
+      0.145, 0.10729, 0.0748, 0.15008, 0.09851, 0.11877, 0.12462, 0.0835,
+      0.09939, 0.14495, 0.09747, 0.06926, 0.14923, 0.0871, 0.10084, 0.14262,
+      0.08493, 0.13096, 0.08747, 0.14268, 0.14456, 0.11048, 0.11086, 0.14803,
+      0.10754, 0.10599, 0.14721, 0.09617, 0.07482, 0.13996, 0.14679, 0.10722,
+      0.14521, 0.07135, 0.13145, 0.08697, 0.11978, 0.134, 0.1078, 0.06569,
+      0.12985, 0.09473, 0.14162, 0.14851, 0.07274, 0.0516, 0.14741, 0.10447,
+      0.1058, 0.13418, 0.07527, 0.15381, 0.06928, 0.13061, 0.15785, 0.09725,
+      0.04462, 0.12548, 0.09255, 0.09343, 0.15882, 0.08654, 0.07214, 0.14239,
+      0.1289, 0.11447, 0.15094, 0.08282, 0.13706, 0.11341, 0.12036, 0.14279,
+      0.12232, 0.12023, 0.16012, 0.12353, 0.13315, 0.17444, 0.12841, 0.09242,
+      0.15023, 0.11132, 0.11938, 0.12584, 0.08846, 0.12447, 0.02754, 0.12728,
+      0.14821, 0.10822, 0.08674, 0.13322, 0.10326, 0.08249, 0.15025, 0.09337,
+      0.08254, 0.10586, 0.09855, 0.11892, 0.10815, 0.04441, 0.1353, 0.09342,
+      0.05497, 0.13781, 0.1142, 0.07968, 0.12417, 0.07912, 0.07525, 0.16064,
+      0.07918, 0.10445, 0.10985, 0.09904, 0.09341, 0.12561, 0.12454, 0.11763,
+      0.11226, 0.12241, 0.13967, 0.09018, 0.01118, 0.00502, 0.06291, 0.07784,
+      0.11371, 0.09108, 0.1056, 0.06882, 0.09674, 0.05758, 0.06919, 0.095,
+      0.11566, 0.06008, 0.08721, 0.08252, 0.10451, 0.08627, 0.07991, 0.06902,
+      0.08038, 0.07186, 0.12676, 0.12073, 0.1042, 0.08915, 0.09359, 0.09597,
+      0.11663, 0.10251, 0.08235, 0.07646, 0.11721, 0.08805, 0.08762, 0.09387,
+      0.09674, 0.11211, 0.16045, 0.07331, 0.07967, 0.10494, 0.08702, 0.1493,
+      0.11008, 0.12797, 0.10574, 0.12018, 0.11472, 0.15201, 0.11406, 0.06949,
+      0.14641, 0.14753, 0.12958, 0.13779, 0.08538, 0.13825, 0.07486, 0.12953,
+      0.12871, 0.13212, 0.11192, 0.13914, 0.12412, 0.14057, 0.15005, 0.08189,
+      0.04771, 0.15564, 0.06212, 0.11475, 0.16446, 0.10954, 0.13927, 0.05895,
+      0.15064, 0.16146, 0.10186, 0.04385, 0.13178, 0.09389, 0.10088, 0.17177,
+      0.12416, 0.08048, 0.13117, 0.12725, 0.12905, 0.13926, 0.10663, 0.12781,
+      0.10354, 0.11124, 0.13773, 0.11633, 0.11553, 0.1599, 0.13294, 0.12669,
+      0.17516, 0.1287, 0.0955, 0.14116, 0.14975, 0.1451, 0.12611, 0.0637,
+      0.13805, 0.0733, 0.14401, 0.13993, 0.12967, 0.10442, 0.1483, 0.10224,
+      0.08568, 0.17237, 0.1426, 0.13702, 0.14497, 0.14433, 0.15799, 0.14875,
+      0.09173, 0.13654, 0.09571, 0.08151, 0.14715, 0.11738, 0.11313, 0.15965,
+      0.11693, 0.10063, 0.17007, 0.08198, 0.10306, 0.14016, 0.1144, 0.136,
+      0.16468, 0.13712, 0.16323, 0.13691, 0.15115, 0.16249, 0.12523, 0.05019,
+      0.13791, 0.11384, 0.11621, 0.17541, 0.07749, 0.12077, 0.11893, 0.14356,
+      0.16342, 0.12312, 0.09908, 0.15532, 0.10029, 0.13966, 0.15295, 0.14543,
+      0.13645, 0.1691, 0.13955, 0.13727, 0.1735, 0.11007, 0.11861, 0.14307,
+      0.06796, 0.13139, 0.09889, 0.09545, 0.13931, 0.07982, 0.13743, 0.15915,
+      0.0814, 0.05361, 0.13798, 0.11402, 0.0757, 0.17386, 0.08875, 0.13433,
+      0.11849, 0.14711, 0.1409, 0.11743, 0.12466, 0.14755, 0.07343, 0.11687,
+      0.165, 0.1043, 0.11352, 0.16795, 0.15481, 0.14398, 0.16572, 0.13572,
+      0.13377, 0.12887, 0.13483, 0.12305, 0.09158, 0.06243, 0.13145, 0.06839,
+      0.12929, 0.13532, 0.08248, 0.05682, 0.13828, 0.10034, 0.09276, 0.15013,
+      0.06372, 0.12816, 0.04845, 0.09133, 0.13026, 0.08935, 0.05092, 0.14011,
+      0.10812, 0.05755, 0.15399, 0.08692, 0.07398, 0.13328, 0.08784, 0.1077,
+      0.1313, 0.06159, 0.12774, 0.11059, 0.1083, 0.13057, 0.10739, 0.08881,
+      0.13655, 0.11352, 0.12154, 0.14656, 0.10122, 0.0903, 0.15262, 0.14779,
+      0.14993, 0.14748, 0.08445, 0.14409, 0.08791, 0.1273, 0.1393, 0.12246,
+      0.09412, 0.13618, 0.11068, 0.10633, 0.16289, 0.10004, 0.07398, 0.12915,
+      0.11844, 0.12258, 0.11651, 0.06299, 0.13394, 0.0987, 0.05216, 0.15179,
+      0.11827, 0.1063, 0.13609, 0.08296, 0.08551, 0.15773, 0.08234, 0.07751,
+      0.13188, 0.09421, 0.10676, 0.13598, 0.0838, 0.11029, 0.11515, 0.11946,
+      0.12438, 0.06607, 0.00692, 0.00097, 0.0001, 0.00003, 0.00001, 0
+    ],
+    "hootCer": 0.4106203995793901,
+    "isStreamed": false
+  }
+}
