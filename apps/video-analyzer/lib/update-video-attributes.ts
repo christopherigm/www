@@ -1,16 +1,24 @@
 import APIGetBaseURLFromEnv from '@repo/helpers/api-get-base-url';
 
 import Patch from '@repo/helpers/api-patch';
-import { type VideoType } from '@/state/video-type';
+import type { VideoAttributesType, VideoType } from '@/state/video-type';
 
-const UpdateVideoAttributes = (video: VideoType): Promise<VideoType> => {
+type Props = {
+  id: string;
+  attributes: VideoAttributesType;
+};
+
+const UpdateVideoAttributes = ({
+  id,
+  attributes,
+}: Props): Promise<VideoType> => {
   return new Promise((res, rej) => {
     const BaseURL = APIGetBaseURLFromEnv();
-    const url = `${BaseURL}/v1/videos/${video.id}/`;
+    const url = `${BaseURL}/v1/videos/${id}/`;
     const data = {
-      id: video.id,
+      id: id,
       type: 'Video',
-      attributes: video.attributes,
+      attributes: attributes,
     };
     Patch(url, data, true)
       .then((rawVideo: VideoType) => res(rawVideo))

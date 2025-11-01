@@ -1,6 +1,7 @@
 import fs from 'fs';
 import Post from '@repo/helpers/api-post';
-import CopyFile from './copy-file';
+import CopyFile from '@repo/helpers/copy-file';
+import DeleteMediaFile from '@repo/helpers/delete-media-file';
 
 const nodeEnv = process.env.NODE_ENV?.trim() ?? 'localhost';
 
@@ -96,8 +97,8 @@ const GenerateSRT = ({
           dest: dest_clean,
         })
           .then(() => {
+            DeleteMediaFile(file);
             const srt = fs.readFileSync(dest_file, 'utf-8');
-            // console.log('>> CopyFile done');
             res({ file: `media/${dest_clean}`, srt });
           })
           .catch((e) => rej(e));

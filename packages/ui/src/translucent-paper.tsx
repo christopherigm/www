@@ -23,6 +23,7 @@ const TranslucentPaper = ({ children, borderRadius }: Props) => {
         '--bg-currentcolor': color,
         backdropFilter: 'blur(10px)',
         borderRadius,
+        overflow: 'hidden',
       }}
     >
       {children}

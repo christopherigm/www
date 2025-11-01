@@ -69,6 +69,7 @@ const DownloadVideo = ({
 
       exec(command, { maxBuffer: 1024 * 2048 }, (error) => {
         if (error) {
+          console.log('Error VideoUpscaleFPS, CMD:', command, error);
           return rej(error);
         }
         return res(`media/${clean_name}`);

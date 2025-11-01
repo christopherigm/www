@@ -6,7 +6,6 @@ import GetBrowserLanguage from '@repo/ui/get-browser-language';
 import { useVideoContext } from '@/state/video-reducer';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import DescriptionIcon from '@mui/icons-material/Description';
 import MicIcon from '@mui/icons-material/Mic';
 import useProcessPodcast, {
   type LinkType,
@@ -27,22 +26,23 @@ import Divisor from '@repo/ui/divisor';
 import SendIcon from '@mui/icons-material/Send';
 import Slider from '@mui/material/Slider';
 import VideoChatIcon from '@mui/icons-material/VideoChat';
-import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import SRTToText from '@repo/helpers/srt-to-text';
-import type { ScriptInteraction } from '@/app/generate-podcast-script/route';
+import { useSystemContext } from '@/state/system-reducer';
+import useBackgroundVideo from '@/state/use-background-video';
+import useBackgroundMusic from '@/state/use-background-music';
+import SSRPlayer from '@/components/ssr-player';
+import { BackgroundVideoType } from '@/state/background-video-type';
+import { BackgroundMusicType } from '@/state/background-music-type';
+import GetDomainURLFromEnv from '@repo/helpers/get-domain-url';
+const domainURL = GetDomainURLFromEnv();
+
+import PodcastScript from '@/components/podcast-script';
 
 type DropDownProps = {
   name: string;
   label: string;
   options: Array<string>;
   defaultValue?: string;
-};
-
-type Word = {
-  user: number;
-  text: string;
+  onChange?: (value: string) => void;
 };
 
 const DropDown = ({
@@ -50,6 +50,7 @@ const DropDown = ({
   label,
   options,
   defaultValue = 'auto',
+  onChange,
 }: DropDownProps) => {
   return (
     <FormControl fullWidth>
@@ -60,6 +61,11 @@ const DropDown = ({
         size="small"
         defaultValue={defaultValue}
         name={name}
+        onChange={(e) => {
+          if (onChange !== undefined) {
+            onChange(e.target.value);
+          }
+        }}
       >
         {options.map((key) => {
           return (
@@ -76,12 +82,18 @@ const DropDown = ({
 const Podcast = () => {
   const { browserLanguage } = GetBrowserLanguage();
   const { video, dispatch } = useVideoContext();
+  const system = useSystemContext();
+  const ProcessBackground = useBackgroundVideo();
+  const ProcessMusic = useBackgroundMusic();
   const language = browserLanguage;
   const ProcessVideoPodcast = useProcessPodcast();
   const [type, setType] = useState<
     '' | 'podcast_script' | 'local_link_podcast' | 'local_link_podcast_video'
   >('');
-  const [words, setWords] = useState<Array<Word>>([]);
+  const [backgroundSelected, setBackgroundSelected] =
+    useState<BackgroundVideoType | null>(null);
+  const [musicSelected, setMusicSelected] =
+    useState<BackgroundMusicType | null>(null);
 
   const speakers = [
     'chris',
@@ -128,16 +140,16 @@ const Podcast = () => {
       name: 'Portuguese',
     },
   ];
-  const videoBackgrounds = [
-    'car',
-    'cosmos',
-    'galaxy',
-    'matrix',
-    'minecraft-1',
-    'minecraft-2',
-    'minecraft-3',
-    'space',
-  ];
+  // const videoBackgrounds = [
+  //   'car',
+  //   'cosmos',
+  //   'galaxy',
+  //   'matrix',
+  //   'minecraft-1',
+  //   'minecraft-2',
+  //   'minecraft-3',
+  //   'space',
+  // ];
 
   const doneCallBack = (video: VideoType, type: LinkType, link: string) => {
     video.attributes[type] = link;
@@ -155,173 +167,17 @@ const Podcast = () => {
   const isLoading = (link: string) =>
     video.isLoading || ProcessVideoPodcast.isLoading || link === 'processing';
 
-  const getStringValue = (data: string): number => {
-    let value = 0;
-    data.split('').map((i) => {
-      value += i.codePointAt(0) ?? 0;
-    });
-    return value;
-  };
-
-  const isSizeSimilar = (str1: string, str2: string): boolean => {
-    if (!str1 || !str2) {
-      return false;
-    }
-    const l1 = str1.length;
-    const l2 = str2.length;
-    const difference = Math.abs(l1 - l2);
-    const total = l1 + l2;
-    const ratio = (difference * 100) / total;
-    console.log('ratio:', ratio);
-    return ratio < 12;
-  };
-
-  const hasSimilarWords = (str1: string, str2: string): boolean => {
-    const str1Value = getStringValue(str1);
-    const str2Value = getStringValue(str2);
-    console.log('=======================');
-    console.log('strs:', str1, '->', str2);
-    console.log('str1Value:', str1Value);
-    console.log('str2Value:', str2Value);
-    const difference = Math.abs(str1Value - str2Value);
-    console.log('difference:', difference);
-    const total = str1Value + str2Value;
-    const ratio = (difference * 100) / total;
-    console.log('ratio:', ratio);
-    return ratio < 1;
-  };
-
-  const wordLikelihood = (str1: string, str2: string): boolean => {
-    if (!str1 || !str2) {
-      return false;
-    }
-    if (str1 === str2) {
-      return true;
-    }
-    if (str1.includes(str2) || str2.includes(str1)) {
-      console.log('>> wordLikelihood:', str2, '>', str1);
-      return isSizeSimilar(str1, str2);
-    }
-    return hasSimilarWords(str1, str2);
-  };
-
   useEffect(() => {
-    // console.log(hasSimilarWords('la', 'yo'));
-    // return console.log(hasSimilarWords('encante', 'encanta'));
-
-    // console.log('Like', wordLikelihood('tenerlos', 'detenerlos'));
-    // console.log('Like', wordLikelihood('hola', 'mundo'));
-    // console.log('detenerlos'.includes('tenerlos'));
-    // return console.log('tenerlos'.includes('detenerlos'));
-    if (
-      !video.attributes.podcast_script ||
-      video.attributes.podcast_script === 'processing' ||
-      video.attributes.podcast_script === 'error' ||
-      !video.attributes.podcast_srt
-    ) {
-      return;
-    }
-
-    const srtWords: Array<string> = SRTToText(video.attributes.podcast_srt)
-      .replaceAll("'", '')
-      .replaceAll('.', '')
-      .replaceAll(',', '')
-      .replaceAll('?', '')
-      .replaceAll('\r', '')
-      .split('\n');
-    console.log('>> podcast srt:\n\n', srtWords);
-
-    // const users: {[index: number]: string} = {}
-    const scriptInteractions: Array<ScriptInteraction> = JSON.parse(
-      video.attributes.podcast_script ?? '[]'
-    );
-    const words: Array<Word> = [];
-    console.log('>> podcast scriptInteractions:\n\n', scriptInteractions);
-
-    let pointer = 0;
-    scriptInteractions.map((i: ScriptInteraction) => {
-      console.log('==============================');
-      console.log('text:', i.text);
-      // srtWords = srtWords.slice(pointer, srtWords.length);
-      // console.log('srtWords:', srtWords);
-
-      const allWords: Array<string> = i.text
-        .replaceAll("'", '')
-        .replaceAll('.', '')
-        .replaceAll(',', '')
-        .replaceAll('?', '')
-        .replaceAll('\r', '')
-        .split(' ');
-      const initialWord: string = allWords[0];
-      const finalWord: string = allWords[allWords.length - 1];
-
-      let initialWordIndex = -1;
-      let finalWordIndex = -1;
-      for (let j = pointer; j <= srtWords.length; j++) {
-        // const element = array[j];
-        pointer = j;
-        console.log('pointer:', pointer);
-        // if (srtWords[j] === initialWord) {
-        if (wordLikelihood(srtWords[j], initialWord)) {
-          initialWordIndex = pointer;
-        }
-        console.log('srtWords[j]:', finalWord, '-> ', srtWords[j]);
-        // if (srtWords[j] === finalWord) {
-        if (wordLikelihood(srtWords[j], finalWord)) {
-          finalWordIndex = pointer;
-          break;
-        }
-      }
-
-      console.log('>> initialWord: ', initialWord, initialWordIndex);
-      console.log('>> FinalWord: ', finalWord, finalWordIndex);
-
-      for (let z = initialWordIndex; z <= finalWordIndex; z++) {
-        words.push({
-          user: i.speakerID,
-          text: srtWords[z],
-        });
-      }
-      console.log('speakerID:', i.speakerID);
-    });
-    console.log('>> words:\n\n', words);
-
-    setWords(words);
-  }, [video.attributes.podcast_script, video.attributes.podcast_srt]);
+    ProcessBackground.GetAll();
+    ProcessMusic.GetAllMusic();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
       <Box display="flex" flexDirection="column">
         <Box display="flex" alignItems="end">
-          <Button
-            variant="contained"
-            color="inherit"
-            endIcon={
-              <DescriptionIcon
-                color={
-                  video.attributes.podcast_script === 'error'
-                    ? 'error'
-                    : 'success'
-                }
-              />
-            }
-            sx={{
-              textTransform: 'initial',
-            }}
-            disabled={
-              ProcessVideoPodcast.isLoading ||
-              isLoading(video.attributes.podcast_script)
-            }
-            onClick={() => setType('podcast_script')}
-            fullWidth
-          >
-            {video.attributes.podcast_script &&
-            video.attributes.podcast_script !== 'processing' ? (
-              <>{language === 'en' ? 'Script' : 'Script'}</>
-            ) : (
-              <>{language === 'en' ? 'Script' : 'Script'}</>
-            )}
-          </Button>
+          <PodcastScript />
           <Box width={10} flexShrink={0} />
           <Button
             variant="contained"
@@ -355,91 +211,42 @@ const Podcast = () => {
               <>{language === 'en' ? 'Audio' : 'Audio'}</>
             )}
           </Button>
-        </Box>
-
-        {video.attributes.local_link_podcast ? (
-          <>
-            <HorizontalDivisor margin={1} />
-            <Box display="flex" flexDirection="column">
-              <Typography
-                variant="body2"
-                fontWeight="normal"
-                textAlign="center"
+          {video.attributes.local_link_podcast ? (
+            <>
+              <Box width={10} flexShrink={0} />
+              <Button
+                variant="contained"
+                color="inherit"
+                endIcon={
+                  <VideoChatIcon
+                    color={
+                      video.attributes.local_link_podcast_video === 'error'
+                        ? 'error'
+                        : 'success'
+                    }
+                  />
+                }
+                sx={{
+                  textTransform: 'initial',
+                }}
+                disabled={
+                  ProcessVideoPodcast.isLoading ||
+                  isLoading(video.attributes.local_link_podcast_video) ||
+                  isLoading(video.attributes.local_link_podcast) ||
+                  !video.attributes.local_link_podcast ||
+                  video.attributes.local_link_podcast === 'error'
+                }
+                onClick={() => setType('local_link_podcast_video')}
+                fullWidth
               >
-                {language === 'en' ? 'Video' : 'Video'}
-              </Typography>
-              <Divisor height={5} />
-              <Box display="flex">
-                <Button
-                  variant="contained"
-                  color="inherit"
-                  endIcon={
-                    <VideoChatIcon
-                      color={
-                        video.attributes.local_link_podcast_video === 'error'
-                          ? 'error'
-                          : 'success'
-                      }
-                    />
-                  }
-                  sx={{
-                    textTransform: 'initial',
-                  }}
-                  disabled={
-                    ProcessVideoPodcast.isLoading ||
-                    isLoading(video.attributes.local_link_podcast_video) ||
-                    isLoading(video.attributes.local_link_podcast) ||
-                    !video.attributes.local_link_podcast ||
-                    video.attributes.local_link_podcast === 'error'
-                  }
-                  onClick={() => setType('local_link_podcast_video')}
-                  fullWidth
-                >
-                  {video.attributes.local_link_podcast_video &&
-                  video.attributes.local_link_podcast_video !== 'processing' ? (
-                    <>{language === 'en' ? 'Create' : 'Create'}</>
-                  ) : (
-                    <>{language === 'en' ? 'Create' : 'Create'}</>
-                  )}
-                </Button>
-                <Box width={5} flexShrink={0} />
-                <Button
-                  variant="contained"
-                  color="inherit"
-                  endIcon={
-                    <AutoFixHighIcon
-                      color={
-                        video.attributes.local_link_podcast_video === 'error'
-                          ? 'error'
-                          : 'success'
-                      }
-                    />
-                  }
-                  sx={{
-                    textTransform: 'initial',
-                  }}
-                  disabled={
-                    ProcessVideoPodcast.isLoading ||
-                    isLoading(video.attributes.local_link_podcast_video) ||
-                    isLoading(video.attributes.local_link_podcast) ||
-                    !video.attributes.local_link_podcast ||
-                    video.attributes.local_link_podcast === 'error'
-                  }
-                  onClick={() => setType('local_link_podcast_video')}
-                  fullWidth
-                >
-                  {video.attributes.local_link_podcast_video &&
-                  video.attributes.local_link_podcast_video !== 'processing' ? (
-                    <>{language === 'en' ? 'Improve' : 'Mejorar'}</>
-                  ) : (
-                    <>{language === 'en' ? 'Improve' : 'Mejorar'}</>
-                  )}
-                </Button>
-              </Box>
-            </Box>
-          </>
-        ) : null}
-
+                {video.attributes.local_link_podcast_video &&
+                video.attributes.local_link_podcast_video !== 'processing' ? (
+                  <>Video</>
+                ) : null}
+              </Button>
+            </>
+          ) : null}
+        </Box>
         {ProcessVideoPodcast.isLoading ||
         isLoading(video.attributes.local_link_podcast) ||
         isLoading(video.attributes.local_link_podcast_video) ? (
@@ -448,24 +255,6 @@ const Podcast = () => {
           </Box>
         ) : null}
       </Box>
-
-      <HorizontalDivisor margin={1} />
-      <Typography variant="body2" fontWeight="normal" textAlign="center">
-        {language === 'en' ? 'Words in video' : 'Palabras en el video'}
-      </Typography>
-      <Stack direction="row" spacing={1} marginTop={1} flexWrap="wrap">
-        {words.map((word: Word, index: number) => {
-          return (
-            <Chip
-              key={index}
-              color={word.user === 1 ? 'primary' : 'success'}
-              label={word.text}
-              variant="filled"
-              sx={{ marginBottom: 7 }}
-            />
-          );
-        })}
-      </Stack>
 
       <Modal
         open={type !== ''}
@@ -583,11 +372,32 @@ const Podcast = () => {
                         progressCallBack(video, 'local_link_podcast', v),
                     });
                   } else if (type === 'local_link_podcast_video') {
-                    const videoBackground =
+                    const videoBackgroundSelected =
                       formData.get('videoBackground')?.toString().trim() ?? '';
+                    const videoBackground = system.state.backgroundVideos.find(
+                      (i) => i.attributes.name === videoBackgroundSelected
+                    )?.attributes?.local_link;
+
+                    const videoMusicSelected =
+                      formData.get('videoMusic')?.toString().trim() ?? '';
+                    const videoMusic =
+                      system.state.backgroundMusic.find(
+                        (i) => i.attributes.name === videoMusicSelected
+                      )?.attributes?.local_link ?? '';
+
+                    const musicVolume = Number(
+                      formData.get('musicVolume')?.toString().trim() ?? 8
+                    );
+
+                    if (!videoBackgroundSelected) {
+                      return;
+                    }
+
                     ProcessVideoPodcast.video({
                       video,
                       videoBackground,
+                      videoMusic,
+                      musicVolume,
                       type: 'local_link_podcast_video',
                       doneCallBack: (link) =>
                         doneCallBack(video, 'local_link_podcast_video', link),
@@ -747,7 +557,83 @@ const Podcast = () => {
                           : 'Fondo del video'
                       }
                       name="videoBackground"
-                      options={videoBackgrounds}
+                      options={system.state.backgroundVideos
+                        .filter((i) =>
+                          ProcessBackground.isCompleted(i.attributes.status)
+                        )
+                        .map((i) => i.attributes.name)}
+                      onChange={(value) => {
+                        const backgroundSelected =
+                          system.state.backgroundVideos.find(
+                            (i) => value === i.attributes.name
+                          );
+                        if (backgroundSelected) {
+                          setBackgroundSelected(backgroundSelected);
+                        }
+                      }}
+                    />
+                    <Divisor />
+                    {backgroundSelected ? (
+                      <>
+                        <Box display="flex" justifyContent="center">
+                          <Box width={200} height={200}>
+                            <SSRPlayer
+                              link={`${domainURL}/${backgroundSelected.attributes.local_link}`}
+                              height="100%"
+                              playing={false}
+                            />
+                          </Box>
+                        </Box>
+                        <Divisor />
+                      </>
+                    ) : null}
+                    <DropDown
+                      label={
+                        language === 'en' ? 'Video music' : 'Musica del video'
+                      }
+                      name="videoMusic"
+                      options={system.state.backgroundMusic
+                        .filter((i) =>
+                          ProcessMusic.RequestCompleted(i.attributes.status)
+                        )
+                        .map((i) => i.attributes.name)}
+                      onChange={(value) => {
+                        const musicSelected = system.state.backgroundMusic.find(
+                          (i) => value === i.attributes.name
+                        );
+                        if (musicSelected) {
+                          setMusicSelected(musicSelected);
+                        }
+                      }}
+                    />
+                    <Divisor />
+                    {musicSelected ? (
+                      <>
+                        <SSRPlayer
+                          link={`${domainURL}/${musicSelected.attributes.local_link}`}
+                          height={55}
+                          playing={false}
+                        />
+                        <Divisor />
+                      </>
+                    ) : null}
+                    <TextField
+                      label={
+                        language === 'en'
+                          ? 'Volumen de la musica (0-100)'
+                          : 'Music volume (0-100)'
+                      }
+                      placeholder={
+                        language === 'en'
+                          ? 'Volumen de la musica (0-100)'
+                          : 'Music volume (0-100)'
+                      }
+                      size="small"
+                      name="musicVolume"
+                      type="text"
+                      defaultValue={8}
+                      fullWidth
+                      required
                     />
                     <Divisor />
                     <Button

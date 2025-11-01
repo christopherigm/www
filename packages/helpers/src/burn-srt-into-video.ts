@@ -1,5 +1,6 @@
 import { exec } from 'child_process';
 import fs from 'fs';
+import DeleteMediaFile from './delete-media-file';
 
 const nodeEnv = process.env.NODE_ENV?.trim() ?? 'localhost';
 
@@ -52,7 +53,7 @@ const BurnSRTIntoVideo = ({
         console.log('Error videoSRTCommand:', error);
         return rej(error);
       }
-      fs.rmSync(SRTFilePath);
+      DeleteMediaFile(`media/${SRTFilePath}`);
       return res(`media/${dest_video_clean}`);
     });
   });

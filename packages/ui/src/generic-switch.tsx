@@ -13,6 +13,7 @@ type Props = {
   value: boolean;
   onChange: (value: boolean) => void;
   disabled?: boolean;
+  defaultChecked?: boolean;
 };
 
 const GenericSwitch = ({
@@ -21,6 +22,7 @@ const GenericSwitch = ({
   value,
   onChange,
   disabled = false,
+  defaultChecked,
 }: Props) => {
   return (
     <FormGroup>
@@ -31,6 +33,7 @@ const GenericSwitch = ({
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onChange(event.target.checked)
             }
+            defaultChecked={defaultChecked}
           />
         }
         label={label ? label[language] : label}
@@ -39,6 +42,7 @@ const GenericSwitch = ({
           margin: 0,
           marginRight: -1,
         }}
+        defaultChecked={defaultChecked}
       />
     </FormGroup>
   );

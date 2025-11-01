@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import GetVideoByID from '@/lib/get-video-by-id';
-import { VideoType } from '@/state/video-type';
+import type { VideoType, VideoAttributesType } from '@/state/video-type';
 import UpdateVideoAttributes from '@/lib/update-video-attributes';
 import CreatePodcastScript from '@/lib/create-podcast-script';
 import CreatePodcastAudio from '@/lib/create-podcast-audio';
@@ -14,7 +14,8 @@ export type LinkType =
   | 'local_link_podcast_video';
 
 type UpdatePodcastScriptProps = {
-  video: VideoType;
+  id: string;
+  attributes: VideoAttributesType;
   doneCallBack: () => void;
 };
 
@@ -37,6 +38,8 @@ type ProcessPodcastProps = {
 
 type ProcessPodcastVideoProps = {
   videoBackground?: string;
+  videoMusic?: string;
+  musicVolume?: number;
 } & BaseProps;
 
 const useProcessPodcast = () => {
@@ -70,8 +73,8 @@ const useProcessPodcast = () => {
   const ProcessPodcastScript = ({
     video,
     type,
-    language = 'English',
-    codeLanguage = 'en',
+    language = '',
+    codeLanguage = '',
     speakers = [],
     mood = '',
     name = '',
@@ -126,10 +129,12 @@ const useProcessPodcast = () => {
     video,
     type,
     videoBackground = 'car',
+    videoMusic = '',
+    musicVolume = 8,
     doneCallBack,
   }: ProcessPodcastVideoProps) => {
     setIsLoading(true);
-    CreatePodcastVideo(video.id, videoBackground)
+    CreatePodcastVideo(video.id, videoBackground, videoMusic, musicVolume)
       .then(() => {
         video.attributes.local_link_podcast_video = 'processing';
         CheckStatus({ video, type, doneCallBack });
@@ -141,11 +146,15 @@ const useProcessPodcast = () => {
   };
 
   const UpdatePodcastScript = ({
-    video,
+    id,
+    attributes,
     doneCallBack,
   }: UpdatePodcastScriptProps) => {
     setIsLoading(true);
-    UpdateVideoAttributes(video)
+    UpdateVideoAttributes({
+      id,
+      attributes,
+    })
       .then(() => {
         setIsLoading(false);
         doneCallBack();

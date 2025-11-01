@@ -84,6 +84,8 @@ INSTALLED_APPS = [
     'common',
     'users',
     'video',
+    'background',
+    'music',
 ]
 
 MIDDLEWARE = [

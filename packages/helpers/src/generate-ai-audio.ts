@@ -46,7 +46,7 @@ const SendRequest = ({
           5000
         );
       }
-      console.log('Response', response);
+      // console.log('Response', response);
       const generatedWav = `${dest}_generated.wav`;
       callBack(generatedWav);
     })

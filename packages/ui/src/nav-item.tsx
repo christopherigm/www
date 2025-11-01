@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useState, MouseEvent, useEffect } from 'react';
-import { Box } from '@mui/material';
+import { Box, useMediaQuery, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
 import { usePathname } from 'next/navigation';
 import Menu from '@mui/material/Menu';
@@ -10,6 +10,7 @@ import Link from 'next/link';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { drawerOpen } from './drawer';
+import HorizontalDivisor from './horizontal-divisor';
 
 type ItemProps = {
   children: ReactNode;
@@ -35,6 +36,8 @@ const NavItem = ({
   darkNavBar = false,
   subMenus = [],
 }: Props): ReactNode => {
+  const theme = useTheme();
+  const notXS = useMediaQuery(theme.breakpoints.not('xs'));
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [isSelected, setIsSelected] = useState<boolean>(false);
   const [isHome, setIsHome] = useState<boolean>(false);
@@ -81,15 +84,39 @@ const NavItem = ({
   );
 
   const RegularButton = (
-    <Button
-      fullWidth
-      startIcon={icon ? Icon : null}
-      href={href}
-      onClick={() => (drawerOpen.value = false)}
-      sx={SelectedStyle}
-    >
-      {children}
-    </Button>
+    <>
+      {notXS ? (
+        <>
+          <Button
+            fullWidth
+            startIcon={icon ? Icon : null}
+            href={href}
+            onClick={() => (drawerOpen.value = false)}
+            sx={SelectedStyle}
+          >
+            {children}
+          </Button>
+        </>
+      ) : (
+        <Box display="flex" flexDirection="column" width="100%">
+          <Button
+            fullWidth
+            href={href}
+            onClick={() => (drawerOpen.value = false)}
+            sx={{
+              ...SelectedStyle,
+              display: 'flex',
+              paddingX: 2,
+            }}
+          >
+            {children}
+            <Box flexGrow={1} />
+            {icon}
+          </Button>
+          <HorizontalDivisor margin={1} />
+        </Box>
+      )}
+    </>
   );
 
   const CallbackButton = (
@@ -164,7 +191,9 @@ const NavItem = ({
                     <MenuItem
                       onClick={() => {
                         handleClose();
-                        i.callback && i.callback();
+                        if (i.callback !== undefined) {
+                          i.callback();
+                        }
                         drawerOpen.value = false;
                       }}
                     >

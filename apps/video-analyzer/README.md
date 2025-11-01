@@ -38,7 +38,7 @@ yt-dlp --skip-download --write-automatic-subs --write-subs --sub-langs "es-US" -
 
 curl -Ls -o /dev/null -w %{url_effective} https://vt.tiktok.com/ZSAqtLU6N/
 
-./yt-dlp "https://www.tiktok.com/@nerdnode0/video/7544467250921655574?is_from_webapp=1&sender_device=pc" --add-header "user-agent:Mozilla/5.0" -vU -S "codec:h264" --cookies ./netscape-cookies.txt --merge-output-format mp4 -o "public/media/63a5b4bb-8671-478b-943f-deaf11ec5cee.mp4" --quiet
+./yt-dlp "https://www.tiktok.com/@nerdnode0/video/7544467250921655574?is_from_webapp=1&sender_device=pc" --add-header "user-agent:Mozilla/5.0" -vU -S "codec:h264" --cookies ./netscape-cookies.txt --merge-output-format mp4 -o "63a5b4bb-8671-478b-943f-deaf11ec5cee.mp4" --quiet
 
 ### Facebook
 
@@ -93,7 +93,7 @@ rm file.mp3
 ./yt-dlp "https://www.tiktok.com/@thesanchezlab/video/7536306451518819607?is_from_webapp=1&sender_device=pc" \
 --list-formats
 
---add-header "user-agent:Mozilla/5.0" -vU -S "codec:h264" --cookies ./netscape-cookies.txt --merge-output-format mp4 -o "public/media/63a5b4bb-8671-478b-943f-deaf11ec5cee.mp4" --quiet
+--add-header "user-agent:Mozilla/5.0" -vU -S "codec:h264" --cookies ./netscape-cookies.txt --merge-output-format mp4 -o "63a5b4bb-8671-478b-943f-deaf11ec5cee.mp4" --quiet
 
 ## Test Links
 
@@ -110,17 +110,3 @@ https://www.tiktok.com/@soulnscripts/video/7551423372958125334?_t=ZS-906nQ5z01en
 
 YouTube
 https://youtu.be/i0oxffK8zLc
-
-## Image on video
-
-```sh
-ffmpeg -i input.mp4 -i image.png -filter_complex "overlay=(main_w-overlay_w)/2:(main_h-overlay_h)/2" -codec:a copy output.mp4
-
-ffmpeg -y -i video.mp4 -i logo.png \
- -filter_complex "[0:v][1:v]overlay=(main_w-overlay_w)/2:main_h-overlay_h-0:enable='between(t,0,10)'" \
- output.mp4
-
-ffmpeg -y -i video.mp4 -i logo.png \
- -filter_complex "[0:v][1:v]overlay=(main_w-overlay_w)/2:main_h-overlay_h-10:enable='between(t,0,10)'" \
- output.mp4
-```

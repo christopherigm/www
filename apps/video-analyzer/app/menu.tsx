@@ -5,6 +5,8 @@ import type Languages from '@repo/interfaces/languages';
 import NavItem from '@repo/ui/nav-item';
 import HomeIcon from '@mui/icons-material/Home';
 import InfoIcon from '@mui/icons-material/Info';
+import SettingsIcon from '@mui/icons-material/Settings';
+import InterestsIcon from '@mui/icons-material/Interests';
 
 type Props = {
   language: Languages;
@@ -22,6 +24,22 @@ const Menu = ({ language, primaryColor, darkNavBar = false }: Props) => {
         icon={<HomeIcon />}
       >
         {language === 'en' ? 'Home' : 'Inicio'}
+      </NavItem>
+      <NavItem
+        href="/my-assets"
+        primaryColor={primaryColor}
+        darkNavBar={darkNavBar}
+        icon={<InterestsIcon />}
+      >
+        {language === 'en' ? 'My Assets' : 'Mis recursos'}
+      </NavItem>
+      <NavItem
+        href="/settings"
+        primaryColor={primaryColor}
+        darkNavBar={darkNavBar}
+        icon={<SettingsIcon />}
+      >
+        {language === 'en' ? 'Settings' : 'Configuraciones'}
       </NavItem>
       <NavItem
         href="/about"

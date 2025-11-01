@@ -26,6 +26,9 @@ export async function POST(req: NextRequest) {
 
   return GetVideoByID(id)
     .then((video) => {
+      console.log('=====================================');
+      const originalFile = video.attributes.local_link_sub;
+      console.log('Processing srt video #', video.id);
       video.attributes.logs += '> processing srt video! \n\n';
 
       const promises: Array<Promise<string>> = [];
@@ -50,7 +53,7 @@ export async function POST(req: NextRequest) {
           if (data && data.length) {
             try {
               const rootFolder = nodeEnv == 'production' ? '/app/' : 'public/';
-              fs.rmSync(`${rootFolder}/${video.attributes.local_link_sub}`);
+              fs.rmSync(`${rootFolder}/${originalFile}`);
             } catch {}
             video.attributes.local_link_sub = data[0] ?? '';
             console.log('videoSRTCommand OK!');
