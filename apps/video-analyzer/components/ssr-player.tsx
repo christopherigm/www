@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 
 type Props = {
   link: string;
-  height?: number;
+  height?: number | string;
   playing?: boolean;
 };
 

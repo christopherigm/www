@@ -200,9 +200,11 @@ const PodcastScriptInteractions = ({ podcastScript }: Props) => {
       }
       return i;
     });
-    video.attributes.podcast_script = JSON.stringify(newValue);
     ProcessVideoPodcast.updateScript({
-      video,
+      id: video.id,
+      attributes: {
+        podcast_script: JSON.stringify(newValue),
+      },
       doneCallBack: () => doneCallBack(video),
     });
   };
@@ -210,9 +212,11 @@ const PodcastScriptInteractions = ({ podcastScript }: Props) => {
   const onDelete = (index: number) => {
     const newValue = [...podcastScript];
     newValue.splice(index, 1);
-    video.attributes.podcast_script = JSON.stringify(newValue);
     ProcessVideoPodcast.updateScript({
-      video,
+      id: video.id,
+      attributes: {
+        podcast_script: JSON.stringify(newValue),
+      },
       doneCallBack: () => doneCallBack(video),
     });
   };

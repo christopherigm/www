@@ -43,12 +43,18 @@ from video.views import (
     VideoAnalisysViewSet,
 )
 
+from background.views import BackgroundViewSet
+
+from music.views import MusicViewSet
+
 router = routers.DefaultRouter()
 
 router.register(r'users', UserViewSet)
 
 router.register(r'videos', VideoViewSet)
 router.register(r'video-analisys', VideoAnalisysViewSet)
+router.register(r'backgrounds', BackgroundViewSet)
+router.register(r'music', MusicViewSet)
 
 # https://github.com/axnsan12/drf-yasg
 schema_view = get_schema_view(

@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then(async (video) => {
       console.log('=====================================');
+      const originalFile = video.attributes.local_link_translated_audio;
       console.log('Processing translated audio - video #', video.id);
       video.attributes.logs += '\n\n> processing video for audio! \n\n';
 
@@ -71,7 +72,6 @@ export async function POST(req: NextRequest) {
           console.log('>> GenerateAIAudio speakers:', speakers);
           GenerateAIAudio({ dest, text, speakers })
             .then(async (generatedWav) => {
-              // video.attributes.local_link_translated_audio = generatedWav;
               const originalVideo = video.attributes.local_link;
               const translatedVideoTmp = `${video.attributes.uuid}.translated_audio.tmp.mp4`;
               const sufix = RandomNumber(1, 99999);
@@ -100,9 +100,7 @@ export async function POST(req: NextRequest) {
               });
               const rootFolder = nodeEnv == 'production' ? '/app' : 'public';
               try {
-                fs.rmSync(
-                  `${rootFolder}/${video.attributes.local_link_translated_audio}`
-                );
+                fs.rmSync(`${rootFolder}/${originalFile}`);
               } catch {}
               video.attributes.local_link_translated_audio = `media/${translatedVideo}`;
 

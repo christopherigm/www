@@ -17,28 +17,44 @@ type Props = {
       [x in Languages]: string;
     };
   }>;
-  value: string;
-  onChange: (value: string) => void;
+  name?: string;
+  value?: string;
+  defaultValue?: string;
+  onChange?: (value: string) => void;
 };
 
 const GenericSelector = ({
   language,
   label,
   options,
+  name,
   value,
+  defaultValue = ' ',
   onChange,
 }: Props) => {
+  const id = name ? `${name}-label` : 'select-dropdown';
   return (
     <FormControl fullWidth>
-      <InputLabel id="language-select-label">{label[language]}</InputLabel>
+      <InputLabel id={id}>{label[language]}</InputLabel>
       <Select
-        labelId="language-select-label"
-        id="language-select"
+        labelId={id}
+        id={name}
+        name={name}
         value={value}
+        defaultValue={defaultValue}
         label={label[language]}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => {
+          if (onChange !== undefined) {
+            onChange(e.target.value);
+          }
+        }}
         size="small"
       >
+        {defaultValue === ' ' ? (
+          <MenuItem value="">
+            {language === 'es' ? 'Seleccionar' : 'Select'}
+          </MenuItem>
+        ) : null}
         {options.map((i, index: number) => {
           return (
             <MenuItem key={index} value={i.value}>

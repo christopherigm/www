@@ -31,10 +31,10 @@ const MergeWavFiles = ({
     filter_complex += `amix=inputs=${files.length}:duration=shortest[out]" `;
     command += `${filter_complex} -map "[out]" `;
     command += dest_file;
-    console.log('CMD:', command);
     // res(`media/${dest}`);
     exec(command, { maxBuffer: 1024 * 2048 }, (error) => {
       if (error) {
+        console.log('MergeWavFiles error:', command, ' >> ', error);
         return rej(error);
       }
       return res(`media/${dest}`);

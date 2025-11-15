@@ -13,20 +13,20 @@ export type ScriptInteraction = {
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const id = body?.id ?? null;
-  const language = body?.language ?? 'Spanish';
-  const codeLanguage = body?.codeLanguage ?? 'en';
+  const language = body?.language ?? '';
+  const codeLanguage = body?.codeLanguage ?? '';
   const speakers: Array<string> = body?.speakers ?? ['chris', 'brandon'];
   const mood = body?.mood ?? '';
   const name = body?.name ?? '';
   const instrucctions = body?.instrucctions ?? '';
   const length = body?.length ?? 'medium';
-  if (!id) {
+  if (!id || !language || !codeLanguage) {
     return Response.json(
       {
         id: '',
         status: 'error',
         url: '',
-        error: 'No prompt provided',
+        error: 'No data provided',
       },
       {
         status: 400,
@@ -41,6 +41,9 @@ export async function POST(req: NextRequest) {
       video.attributes.logs += '\n\n> processing podcast script! \n\n';
       video.attributes.podcast_language = codeLanguage;
       video.attributes.podcast_script = 'processing';
+      await UpdateVideoAttributes(video)
+        .then(() => Response.json({ data: 'processing' }, { status: 200 }))
+        .catch((error) => console.log('>> video.save() error:', error));
       // video.attributes.podcast_script = 'processing';
       // UpdateVideoAttributes(video).catch((error) =>
       //   console.log('>> video.save() error:', error)
@@ -130,6 +133,7 @@ export async function POST(req: NextRequest) {
                 .replaceAll('<0xA0>', '')
                 .replaceAll('<0xA8>', '')
                 .replaceAll('<0x80>', '')
+                .replaceAll('<0x83>', '')
                 .replaceAll('<0xE2>', '')
                 .replaceAll('</div>', '')
                 .replaceAll('¡', '')
@@ -137,12 +141,13 @@ export async function POST(req: NextRequest) {
                 .replaceAll(':', '. ')
                 .replaceAll('…', ',')
                 .replaceAll('“', '"')
-                .replaceAll('”', '"')
+                .replaceAll('”', '".')
                 .replaceAll('‘', "'")
-                .replaceAll('’', "'")
-                .replaceAll('*', '"')
-                .replaceAll('{', '"')
-                .replaceAll('}', '"');
+                .replaceAll('’', "'.")
+                .replaceAll('..', '')
+                .replaceAll('*', '')
+                .replaceAll('{', '')
+                .replaceAll('}', '');
               return v;
             });
             video.attributes.podcast_script = JSON.stringify(cleanArray);
@@ -167,9 +172,7 @@ export async function POST(req: NextRequest) {
             console.log('>> video.save() error:', error)
           );
         });
-      return UpdateVideoAttributes(video)
-        .then(() => Response.json({ data: 'processing' }, { status: 200 }))
-        .catch((error) => console.log('>> video.save() error:', error));
+      return Response.json({ data: 'processing' }, { status: 200 });
     })
     .catch((error) => {
       console.log('>> API() - video error:', error);

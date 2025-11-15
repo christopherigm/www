@@ -118,6 +118,17 @@ class Video(MediumPicture):
         blank=True,
         default=''
     )
+    podcast_diarization = models.TextField(
+        null=True,
+        blank=True
+    )
+    local_link_podcast_diarization = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        default=''
+    )
+    
 
     local_link_original_srt = models.CharField(
         max_length=256,

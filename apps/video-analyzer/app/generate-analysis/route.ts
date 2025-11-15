@@ -6,6 +6,7 @@ import GetVideoByID from '@/lib/get-video-by-id';
 import UpdateVideoAttributes from '@/lib/update-video-attributes';
 import UpdateAnalysisAttributes from '@/lib/update-analysis-attributes';
 import OllamaQuery from '@repo/helpers/ollama';
+import type { VideoAttributesType } from '@/state/video-type';
 
 type GeneratePromptProps = {
   language?: Languages;
@@ -47,15 +48,15 @@ const GeneratePrompt = ({
 };
 
 type ProcessRequestProps = {
-  videoID: string;
+  id: string;
   videoAnalisysID: string;
 };
 
-const ProcessRequest = ({ videoID, videoAnalisysID }: ProcessRequestProps) => {
-  console.log('> videoID:', videoID);
+const ProcessRequest = ({ id, videoAnalisysID }: ProcessRequestProps) => {
+  console.log('> videoID:', id);
   console.log('> videoAnalisysID:', videoAnalisysID);
 
-  GetVideoByID(videoID).then((video) => {
+  GetVideoByID(id).then((video) => {
     const childrenIDs = video.relationships.analysis.data
       .map((i) => i.id)
       .join(',');
@@ -63,20 +64,29 @@ const ProcessRequest = ({ videoID, videoAnalisysID }: ProcessRequestProps) => {
     const analysis = video.relationships.analysis.data.find(
       (i) => i.id === videoAnalisysID
     );
+
+    const transcriptions = video.attributes.transcriptions;
+    const attributes: VideoAttributesType = {
+      logs: video.attributes.logs,
+    };
+
     if (!analysis) {
-      console.log('> NO analysis found, after 20 tries');
-      video.attributes.logs += `> NO analysis found!. \n\n`;
-      video.attributes.logs += `> videoAnalisysID: ${videoAnalisysID}. \n\n`;
-      video.attributes.logs += `> Video children: ${JSON.stringify(video.relationships.analysis.data.map((i) => i.id))}. \n\n`;
-      video.attributes.status = 'error';
-      UpdateVideoAttributes(video).catch((error) =>
+      attributes.logs += `> NO analysis found!. \n\n`;
+      attributes.logs += `> videoAnalisysID: ${videoAnalisysID}. \n\n`;
+      attributes.logs += `> Video children: ${JSON.stringify(video.relationships.analysis.data.map((i) => i.id))}. \n\n`;
+      attributes.status = 'error';
+      UpdateVideoAttributes({
+        id,
+        attributes,
+      }).catch((error) =>
         console.log('>> UpdateVideoAttributes error:', error)
       );
       return;
     }
-    if (!video.attributes.transcriptions) {
+
+    if (!transcriptions) {
       console.log('>>> NO clean_transcriptions:', video.id);
-      video.attributes.status = 'error';
+      attributes.status = 'error';
       UpdateVideoAttributes(video).catch((error) =>
         console.log('>> UpdateVideoAttributes error:', error)
       );
@@ -140,30 +150,18 @@ const ProcessRequest = ({ videoID, videoAnalisysID }: ProcessRequestProps) => {
         UpdateAnalysisAttributes(analysis).catch((error) =>
           console.log('>> GetAnalysisByID error:', error)
         );
-        // const missingAnlisys = new VideoAnalisys();
-        // missingAnlisys.id = videoAnalisysID;
-        // missingAnlisys.setItemByIDFromAPI().then(() => {
-        //   missingAnlisys.attributes.status = 'error';
-        //   analysis.attributes.logs += `> ollamaQuery error: ${error} \n\n`;
-        //   missingAnlisys
-        //     .save()
-        //     .catch((error) =>
-        //       console.log('>> errorAnalysis.save() error:', error)
-        //     );
-        // });
       });
   });
 };
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const videoID = body?.videoID ?? null;
+  const id = body?.videoID ?? null;
   const videoAnalisysID = body?.videoAnalisysID ?? null;
-  // const language = body?.language ?? 'en';
-  if (!videoID || !videoAnalisysID) {
+  if (!id || !videoAnalisysID) {
     return Response.json(
       {
-        id: '',
+        id,
         status: 'error',
         url: '',
         error: 'No prompt provided',
@@ -175,7 +173,7 @@ export async function POST(req: NextRequest) {
   }
 
   ProcessRequest({
-    videoID: videoID,
+    id,
     videoAnalisysID: videoAnalisysID,
   });
 

@@ -6,7 +6,7 @@ import {
   useContext,
   useReducer,
 } from 'react';
-import { type VideoType, DefaultVideoState } from '@/state/video-type';
+import { type VideoType, DefaultVideo } from '@/state/video-type';
 import { type VideoAnalysisType } from '@/state/analysis-type';
 
 // type ActionMap<M extends { [index: string]: any }> = {
@@ -156,7 +156,7 @@ type Props = {
   children?: ReactNode | Array<ReactNode>;
 };
 export const VideoProvider = ({ children }: Props) => {
-  const [video, dispatch] = useReducer(Reducer, DefaultVideoState);
+  const [video, dispatch] = useReducer(Reducer, DefaultVideo);
   // const store = useMemo(() => ({ video, dispatch }), [video]);
   return (
     <Context.Provider value={{ video, dispatch }}>{children}</Context.Provider>

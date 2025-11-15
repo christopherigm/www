@@ -15,6 +15,7 @@ import NavItem from './nav-item';
 import type MetaTagsProps from '@repo/interfaces/meta-tags-props';
 import LoginUser from './nav-bar/login-user-menu';
 import { useEffect } from 'react';
+import HorizontalDivisor from './horizontal-divisor';
 
 export const drawerOpen = signal<boolean>(false);
 
@@ -73,6 +74,7 @@ const MobileDrawer = ({
         <Box height={10} />
         <Box flexGrow={1}>{children}</Box>
         {loginEnabled ? <LoginUser language={language} /> : null}
+        <HorizontalDivisor margin={1} />
         <NavItem
           href="/terms-and-conditions"
           primaryColor={primaryColor}
@@ -83,7 +85,7 @@ const MobileDrawer = ({
             ? 'Terms and Conditions'
             : 'Terminos y condiciones'}
         </NavItem>
-        <Box height={20} />
+        <Box height={10} />
         <Box paddingLeft={1} paddingRight={1}>
           <ThemeModeButtons language={language} />
         </Box>

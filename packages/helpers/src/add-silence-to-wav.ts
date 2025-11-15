@@ -27,20 +27,21 @@ const AddSilenceToWav = ({
   const dest_file = `${outputFolder}/${dest_clean}`;
 
   return new Promise((res, rej) => {
-    // ffmpeg -i input.wav -c:a libvorbis -qscale:a 5 output.ogg
-    // ffmpeg -f lavfi -t 2 -i anullsrc=channel_layout=stereo:sample_rate=44100 -i my_audio.wav -filter_complex "[0:a][1:a]concat=n=2:v=0:a=1" output_with_silence.wav
-    let command = 'ffmpeg -y -f lavfi ';
+    let command = 'ffmpeg -y ';
     if (beginning) {
-      command += `-t ${time} `;
+      command += `-f lavfi -t ${time} `;
       command += '-i anullsrc=channel_layout=stereo:sample_rate=44100 ';
       command += `-i ${src_file} `;
-      command += '-filter_complex "[0:a][1:a]concat=n=2:v=0:a=1" ';
     } else {
-      command += `-af "apad=pad_dur=${time}" -i ${src_file}`;
+      command += `-i ${src_file} `;
+      command += `-f lavfi -t ${time} `;
+      command += '-i anullsrc=channel_layout=stereo:sample_rate=44100 ';
     }
+    command += '-filter_complex "[0:a][1:a]concat=n=2:v=0:a=1" ';
     command += dest_file;
     exec(command, { maxBuffer: 1024 * 2048 }, (error) => {
       if (error) {
+        console.log('>> AddSilenceToWav', command, '>> error:', error);
         return rej(error);
       }
       return res(`media/${dest_clean}`);

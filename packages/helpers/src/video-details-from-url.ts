@@ -17,6 +17,9 @@ export type YouTubePayload = {
   subtitles: {
     [key: string]: Array<CaptionObject>;
   };
+  channel?: string;
+  uploader?: string;
+  artist?: string;
 };
 
 type Props = {

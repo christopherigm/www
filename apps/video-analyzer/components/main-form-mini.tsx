@@ -20,7 +20,7 @@ import RecordedPrompts from '@/components/recorded-prompts';
 import useProcessPrompt from '@/state/process-prompt';
 import HorizontalDivisor from '@repo/ui/horizontal-divisor';
 import IconButton from '@mui/material/IconButton';
-import { DefaultVideoState } from '@/state/video-type';
+import { DefaultVideo } from '@/state/video-type';
 import { useVideoContext } from '@/state/video-reducer';
 
 const MainFormMini = () => {
@@ -56,7 +56,7 @@ const MainFormMini = () => {
         }),
     };
     ProcessPrompt.exec({
-      video: DefaultVideoState,
+      video: DefaultVideo,
       prompt,
       attributes,
       CallBack: (rawData) => dispatch({ type: 'set-data', rawData }),
@@ -88,9 +88,7 @@ const MainFormMini = () => {
             alignItems="center"
           >
             <TextField
-              onChange={(e: {
-                target: { value: React.SetStateAction<string> };
-              }) => setLink(e.target.value)}
+              onChange={(e) => setLink(e.target.value)}
               placeholder={language === 'en' ? 'Video Link' : 'Link del video'}
               size="small"
               name="link"
