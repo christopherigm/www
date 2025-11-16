@@ -205,7 +205,7 @@ const PodcastScriptInteractions = ({ podcastScript }: Props) => {
       attributes: {
         podcast_script: JSON.stringify(newValue),
       },
-      doneCallBack: () => doneCallBack(video),
+      doneCallBack: (video) => doneCallBack(video),
     });
   };
 
@@ -217,7 +217,7 @@ const PodcastScriptInteractions = ({ podcastScript }: Props) => {
       attributes: {
         podcast_script: JSON.stringify(newValue),
       },
-      doneCallBack: () => doneCallBack(video),
+      doneCallBack: (video) => doneCallBack(video),
     });
   };
 

@@ -4,6 +4,7 @@ import UpdateVideoAttributes from '@/lib/update-video-attributes';
 import OllamaQuery from '@repo/helpers/ollama';
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
+import { VideoAttributesType } from '@/state/video-type';
 
 export type ScriptInteraction = {
   speakerID: number;
@@ -37,18 +38,14 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then(async (video) => {
       console.log('=====================================');
-      console.log('Processing podcast script #', video.id);
-      video.attributes.logs += '\n\n> processing podcast script! \n\n';
-      video.attributes.podcast_language = codeLanguage;
-      video.attributes.podcast_script = 'processing';
-      await UpdateVideoAttributes(video)
+      console.log('Processing get subtitles for video #', id);
+      const attributes: VideoAttributesType = { logs: video.attributes.logs };
+      attributes.logs += '\n\n> processing podcast script! \n\n';
+      attributes.podcast_language = codeLanguage;
+      attributes.podcast_script = 'processing';
+      await UpdateVideoAttributes({ id, attributes })
         .then(() => Response.json({ data: 'processing' }, { status: 200 }))
         .catch((error) => console.log('>> video.save() error:', error));
-      // video.attributes.podcast_script = 'processing';
-      // UpdateVideoAttributes(video).catch((error) =>
-      //   console.log('>> video.save() error:', error)
-      // );
-
       const podcast_script = video.attributes.clean_transcriptions
         .replaceAll('\r', '\n')
         .replaceAll('\n', '. ')
@@ -57,7 +54,6 @@ export async function POST(req: NextRequest) {
         .replaceAll('/', '')
         .replaceAll('”', '')
         .replaceAll('“', '');
-
       const users = speakers
         .map((i, id) => `"${i}" speakerID=${id + 1}`)
         .join(', ');
@@ -150,25 +146,25 @@ export async function POST(req: NextRequest) {
                 .replaceAll('}', '');
               return v;
             });
-            video.attributes.podcast_script = JSON.stringify(cleanArray);
+            attributes.podcast_script = JSON.stringify(cleanArray);
             console.log('Done podcast script!');
           } else {
             console.log(prompt);
-            video.attributes.podcast_script = 'error';
-            video.attributes.logs += '> error processing podcast script! \n\n';
-            video.attributes.logs += `> prompt: ${prompt} \n\n`;
+            attributes.podcast_script = 'error';
+            attributes.logs += '> error processing podcast script! \n\n';
+            attributes.logs += `> prompt: ${prompt} \n\n`;
           }
-          UpdateVideoAttributes(video).catch((error) =>
+          UpdateVideoAttributes({ id, attributes }).catch((error) =>
             console.log('>> video.save() error:', error)
           );
         })
         .catch((error) => {
           console.log(error);
           console.log('Error, prompt:', prompt);
-          video.attributes.podcast_script = 'error';
-          video.attributes.logs += '> error processing podcast script! \n\n';
-          video.attributes.logs += `> prompt: ${prompt} \n\n`;
-          UpdateVideoAttributes(video).catch((error) =>
+          attributes.podcast_script = 'error';
+          attributes.logs += '> error processing podcast script! \n\n';
+          attributes.logs += `> prompt: ${prompt} \n\n`;
+          UpdateVideoAttributes({ id, attributes }).catch((error) =>
             console.log('>> video.save() error:', error)
           );
         });

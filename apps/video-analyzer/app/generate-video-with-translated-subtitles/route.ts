@@ -6,6 +6,7 @@ import BurnSRTIntoVideo from '@repo/helpers/burn-srt-into-video';
 import OllamaQuery from '@repo/helpers/ollama';
 import RandomNumber from '@repo/helpers/random-number';
 import SRTToText from '@repo/helpers/srt-to-text';
+import { VideoAttributesType } from '@/state/video-type';
 
 const nodeEnv = process.env.NODE_ENV?.trim() ?? 'localhost';
 
@@ -43,23 +44,19 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then((video) => {
       console.log('=====================================');
+      console.log('Processing video #', id);
+      const attributes: VideoAttributesType = { logs: video.attributes.logs };
+      attributes.logs += '\n\n> processing srt video! \n\n';
       const originalFile = video.attributes.local_link_translated;
-      console.log('Processing video #', video.id);
-      video.attributes.logs += '\n\n> processing srt video! \n\n';
-      // video.attributes.local_link_translated = 'processing';
-      // UpdateVideoAttributes(video).catch((error) =>
-      //   console.log('>> video.save() error:', error)
-      // );
+      const uuid = video.attributes.uuid;
+      const localLink = video.attributes.local_link;
       const splittedTranscriptions = video.attributes.transcriptions
         .replaceAll('\r', '\n')
         .split('\n');
-
-      // console.log('splittedTranscriptions:', splittedTranscriptions);
       const dict: DictTranscription = {};
 
       let lastID = '';
       splittedTranscriptions.map((i: string) => {
-        // console.log(index, 'i:', i);
         if (!isNaN(Number(i)) && !dict[i] && i !== '' && i.length < 3) {
           dict[i] = {
             time: '',
@@ -72,7 +69,6 @@ export async function POST(req: NextRequest) {
           dict[lastID].text += i + ' ';
         }
       });
-      // console.log('dict:', dict);
 
       const structuredTranscriptions: Array<StructuredTranscription> = [];
 
@@ -85,16 +81,11 @@ export async function POST(req: NextRequest) {
       });
 
       if (!structuredTranscriptions.length) {
-        video.attributes.local_link_translated = 'error';
+        attributes.local_link_translated = 'error';
         return UpdateVideoAttributes(video)
           .then(() => Response.json({ data: 'processing' }, { status: 200 }))
           .catch((error) => console.log('>> video.save() error:', error));
-        // UpdateVideoAttributes(video).catch((error) =>
-        //   console.log('>> video.save() error:', error)
-        // );
       }
-      // console.log('To be translated length:', structuredTranscriptions.length);
-
       const promises: Array<Promise<string>> = [];
       let system = 'You are a very skilled linguistic that translates ';
       system += 'text from one language to another. ';
@@ -127,33 +118,31 @@ export async function POST(req: NextRequest) {
             srt += `${v.id}\n${v.time}\n${text ?? ''}\n\n`;
           });
           const sufix = RandomNumber(1, 99999);
-          const src_video = video.attributes.local_link;
-          const dest_video = `${video.attributes.uuid}-${destination_language}.${sufix}.sub.mp4`;
+          const dest_video = `${uuid}-${destination_language}.${sufix}.sub.mp4`;
           BurnSRTIntoVideo({
-            src_video,
+            src_video: localLink,
             dest_video,
             srt_string: srt,
           })
             .then((value) => {
-              console.log('Video completed! #', video.id);
               try {
                 const rootFolder =
                   nodeEnv == 'production' ? '/app/' : 'public/';
                 fs.rmSync(`${rootFolder}/${originalFile}`);
               } catch {}
-              video.attributes.local_link_translated = value;
-              video.attributes.translated_transcriptions = srt;
-              video.attributes.translated_clean_transcriptions = SRTToText(srt);
+              attributes.local_link_translated = value;
+              attributes.translated_transcriptions = srt;
+              attributes.translated_clean_transcriptions = SRTToText(srt);
               UpdateVideoAttributes(video).catch((error) =>
                 console.log('>> video.save() error:', error)
               );
             })
             .catch((error) => {
               console.log(error);
-              video.attributes.logs += `> BurnSRTIntoVideo Error: ${JSON.stringify(error)} \n\n`;
-              video.attributes.logs += `> srt: ${srt} \n\n`;
-              video.attributes.logs += `> BurnSRTIntoVideo Error src_video: ${src_video} \n\n`;
-              video.attributes.local_link_translated = 'error';
+              attributes.logs += `> BurnSRTIntoVideo Error: ${JSON.stringify(error)} \n\n`;
+              attributes.logs += `> srt: ${srt} \n\n`;
+              attributes.logs += `> BurnSRTIntoVideo Error src_video: ${localLink} \n\n`;
+              attributes.local_link_translated = 'error';
               UpdateVideoAttributes(video).catch((error) =>
                 console.log('>> video.save() error:', error)
               );
@@ -161,14 +150,14 @@ export async function POST(req: NextRequest) {
         })
         .catch((error) => {
           console.log('>> Error creating the video', error);
-          video.attributes.local_link_translated = 'error';
-          video.attributes.logs += `> Error creating the video: ${JSON.stringify(error)} \n\n`;
+          attributes.local_link_translated = 'error';
+          attributes.logs += `> Error creating the video: ${JSON.stringify(error)} \n\n`;
           UpdateVideoAttributes(video).catch((error) =>
             console.log('>> video.save() error:', error)
           );
         });
 
-      video.attributes.local_link_translated = 'processing';
+      attributes.local_link_translated = 'processing';
       return UpdateVideoAttributes(video)
         .then(() => Response.json({ data: 'processing' }, { status: 200 }))
         .catch((error) => console.log('>> video.save() error:', error));

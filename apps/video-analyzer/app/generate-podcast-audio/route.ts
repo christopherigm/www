@@ -35,15 +35,13 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then((video) => {
       console.log('=====================================');
-      const attributes: VideoAttributesType = {
-        logs: video.attributes.logs,
-      };
+      console.log('Processing podcast audio Podcast for video #', id);
+      const attributes: VideoAttributesType = { logs: video.attributes.logs };
+      attributes.logs += '\n\n> processing podcast audio! \n\n';
       const originalFile = video.attributes.local_link_podcast;
       const podcastScript = video.attributes.podcast_script;
       const podcastLanguage = video.attributes.podcast_language;
       const uuid = video.attributes.uuid;
-      console.log('Processing podcast audio Podcast for video #', id);
-      attributes.logs += '\n\n> processing podcast audio! \n\n';
 
       const interactions: Array<PodcastInteraction> = JSON.parse(
         podcastScript ?? '[]'

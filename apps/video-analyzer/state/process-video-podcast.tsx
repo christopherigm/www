@@ -16,7 +16,7 @@ export type LinkType =
 type UpdatePodcastScriptProps = {
   id: string;
   attributes: VideoAttributesType;
-  doneCallBack: () => void;
+  doneCallBack: (update: VideoType) => void;
 };
 
 type BaseProps = {
@@ -155,9 +155,9 @@ const useProcessPodcast = () => {
       id,
       attributes,
     })
-      .then(() => {
+      .then((update) => {
         setIsLoading(false);
-        doneCallBack();
+        doneCallBack(update);
       })
       .catch((error) => {
         setIsLoading(false);

@@ -12,6 +12,7 @@ import GetVideoByID from '@/lib/get-video-by-id';
 import UpdateVideoAttributes from '@/lib/update-video-attributes';
 import UpdateAnalysisAttributes from '@/lib/update-analysis-attributes';
 import isInstagram from '@repo/helpers/is-instagram-checker';
+import { VideoAttributesType } from '@/state/video-type';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -35,63 +36,60 @@ export async function POST(req: NextRequest) {
 
   GetVideoByID(id)
     .then((video) => {
-      video.attributes.ip_address = ipAddress;
-      video.attributes.started = DjangoDateTimeField(new Date().toString());
-      video.attributes.logs += '> processing! \n\n';
+      console.log('=====================================');
+      console.log('Processing get subtitles for video #', id);
+      const attributes: VideoAttributesType = { logs: video.attributes.logs };
+      const link = video.attributes.link;
+      const uuid = video.attributes.uuid;
+      const thumbnail = video.attributes.thumbnail;
+      const locaLink = video.attributes.local_link;
+      const language = video.attributes.language;
+      const requestedCaptionsLanguage =
+        video.attributes.requested_captions_language;
+      const requestedSubtitlesLanguage =
+        video.attributes.requested_subtitles_language;
+      attributes.logs += '> processing get subtitles! \n\n';
+      attributes.ip_address = ipAddress;
+      attributes.started = DjangoDateTimeField(new Date().toString());
+
       const promises: Array<Promise<string | null>> = [];
 
-      if (
-        isTiktok(video.attributes.link) ||
-        isFacebook(video.attributes.link) ||
-        isInstagram(video.attributes.link)
-      ) {
+      if (isTiktok(link) || isFacebook(link) || isInstagram(link)) {
         promises.push(
           new Promise((res, rej) => {
             DownloadVideo({
-              url: video.attributes.link,
-              name: `${video.attributes.uuid}.mp4`,
+              url: link,
+              name: `${uuid}.mp4`,
             })
               .then((value: string) => {
-                video.attributes.local_link = value;
-                video.attributes.logs += '> DownloadVideo OK!\n\n';
+                attributes.local_link = value;
+                attributes.logs += '> DownloadVideo OK!\n\n';
                 res(value);
               })
               .catch((e) => {
-                video.attributes.logs += 'Error DownloadVideo:\n\n';
-                video.attributes.logs += e.toString() + '\n\n';
-                // video.attributes.status = 'error';
-                // UpdateVideoAttributes(video)
-                //   .then(() => res(null))
-                //   .catch((error) =>
-                //     console.log('>> video.save() error:', error)
-                //   );
+                attributes.logs += 'Error DownloadVideo:\n\n';
+                attributes.logs += e.toString() + '\n\n';
                 rej(e);
               });
           })
         );
       }
 
-      if (video.attributes.thumbnail) {
+      if (thumbnail) {
         promises.push(
           new Promise((res, rej) => {
             DownloadImage({
-              url: video.attributes.thumbnail,
-              name: video.attributes.uuid,
+              url: thumbnail,
+              name: uuid,
             })
               .then((value: string) => {
-                video.attributes.thumbnail = value;
-                video.attributes.logs += '> Download Thumbnail OK!\n\n';
+                attributes.thumbnail = value;
+                attributes.logs += '> Download Thumbnail OK!\n\n';
                 res(value);
               })
               .catch((e) => {
-                video.attributes.logs += 'Error Download Thumbnail:\n\n';
-                video.attributes.logs += e.toString() + '\n\n';
-                // video.attributes.status = 'error';
-                // UpdateVideoAttributes(video)
-                //   .then(() => res(null))
-                //   .catch((error) =>
-                //     console.log('>> video.save() error:', error)
-                //   );
+                attributes.logs += 'Error Download Thumbnail:\n\n';
+                attributes.logs += e.toString() + '\n\n';
                 rej(e);
               });
           })
@@ -100,50 +98,44 @@ export async function POST(req: NextRequest) {
 
       Promise.all(promises)
         .then(() => {
-          const SRTFile = `${video.attributes.uuid}.original.srt`;
+          const SRTFile = `${uuid}.original.srt`;
           DownloadSubtitle({
-            url: video.attributes.link,
-            localLink: video.attributes.local_link,
+            url: link,
+            localLink: locaLink,
             dest: SRTFile,
-            ...(video.attributes.language && {
-              videoLanguage: video.attributes.language,
+            ...(language && {
+              videoLanguage: language,
             }),
-            ...(video.attributes.requested_captions_language && {
-              requestedCaptionsLanguage:
-                video.attributes.requested_captions_language,
+            ...(requestedCaptionsLanguage && {
+              requestedCaptionsLanguage,
             }),
-            ...(video.attributes.requested_subtitles_language && {
-              requestedSubtitlesLanguage:
-                video.attributes.requested_subtitles_language,
+            ...(requestedSubtitlesLanguage && {
+              requestedSubtitlesLanguage,
             }),
           })
             .then((data: Response) => {
-              video.attributes.logs += '> Subtitles OK! \n\n';
+              attributes.logs += '> Subtitles OK! \n\n';
               if (data && data.cleanSubtitles) {
                 if (data.name) {
-                  video.attributes.name = data.name.substring(0, 254);
+                  attributes.name = data.name.substring(0, 254);
                 }
-                video.attributes.local_link_original_srt = data.srt_file;
-                video.attributes.transcriptions = data.subtitles;
-                video.attributes.clean_transcriptions = data.cleanSubtitles;
+                attributes.local_link_original_srt = data.srt_file;
+                attributes.transcriptions = data.subtitles;
+                attributes.clean_transcriptions = data.cleanSubtitles;
                 if (data.language) {
-                  video.attributes.language = data.language as Languages;
+                  attributes.language = data.language as Languages;
                 }
               }
-              video.attributes.ended = DjangoDateTimeField(
-                new Date().toString()
-              );
-              video.attributes.status = video.attributes.transcriptions
-                ? 'done'
-                : 'error';
-              UpdateVideoAttributes(video).catch((error) =>
+              attributes.ended = DjangoDateTimeField(new Date().toString());
+              attributes.status = data.subtitles ? 'done' : 'error';
+              UpdateVideoAttributes({ id, attributes }).catch((error) =>
                 console.log('>> video.save() error:', error)
               );
             })
             .catch((e) => {
-              video.attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
-              video.attributes.status = 'error';
-              UpdateVideoAttributes(video).catch((error) =>
+              attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
+              attributes.status = 'error';
+              UpdateVideoAttributes({ id, attributes }).catch((error) =>
                 console.log('>> video.save() error:', error)
               );
               const analysis = video.relationships.analysis.data.find(
@@ -159,9 +151,9 @@ export async function POST(req: NextRequest) {
         })
         .catch((e) => {
           console.log('>> All promises error:');
-          video.attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
-          video.attributes.status = 'error';
-          UpdateVideoAttributes(video).catch((error) =>
+          attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
+          attributes.status = 'error';
+          UpdateVideoAttributes({ id, attributes }).catch((error) =>
             console.log('>> video.save() error:', error)
           );
           const analysis = video.relationships.analysis.data.find(

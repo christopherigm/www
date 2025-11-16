@@ -4,6 +4,7 @@ import GetVideoByID from '@/lib/get-video-by-id';
 import UpdateVideoAttributes from '@/lib/update-video-attributes';
 import BurnSRTIntoVideo from '@repo/helpers/burn-srt-into-video';
 import RandomNumber from '@repo/helpers/random-number';
+import { VideoAttributesType } from '@/state/video-type';
 
 const nodeEnv = process.env.NODE_ENV?.trim() ?? 'localhost';
 
@@ -27,19 +28,25 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then((video) => {
       console.log('=====================================');
+      const attributes: VideoAttributesType = {
+        logs: video.attributes.logs,
+      };
       const originalFile = video.attributes.local_link_sub;
-      console.log('Processing srt video #', video.id);
-      video.attributes.logs += '> processing srt video! \n\n';
+      const uuid = video.attributes.uuid;
+      const localLink = video.attributes.local_link;
+      const transcriptions = video.attributes.transcriptions;
+      console.log('Processing srt video #', id);
+      attributes.logs += '> processing srt video! \n\n';
 
       const promises: Array<Promise<string>> = [];
       promises.push(
         new Promise((res, rej) => {
           const sufix = RandomNumber(1, 99999);
-          const src_video = video.attributes.local_link;
-          const dest_video = `${video.attributes.uuid}.${sufix}.sub.mp4`;
+          const src_video = localLink;
+          const dest_video = `${uuid}.${sufix}.sub.mp4`;
 
           BurnSRTIntoVideo({
-            srt_string: video.attributes.transcriptions,
+            srt_string: transcriptions,
             src_video,
             dest_video,
           })
@@ -55,23 +62,23 @@ export async function POST(req: NextRequest) {
               const rootFolder = nodeEnv == 'production' ? '/app/' : 'public/';
               fs.rmSync(`${rootFolder}/${originalFile}`);
             } catch {}
-            video.attributes.local_link_sub = data[0] ?? '';
+            attributes.local_link_sub = data[0] ?? '';
             console.log('videoSRTCommand OK!');
-            UpdateVideoAttributes(video).catch((error) =>
+            UpdateVideoAttributes({ id, attributes }).catch((error) =>
               console.log('>> video.save() error:', error)
             );
           }
         })
         .catch((e) => {
-          video.attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
-          video.attributes.local_link_sub = 'error';
-          UpdateVideoAttributes(video).catch((error) =>
+          attributes.logs += `> Error proccessing the video:\n${e}\n\n`;
+          attributes.local_link_sub = 'error';
+          UpdateVideoAttributes({ id, attributes }).catch((error) =>
             console.log('>> video.save() error:', error)
           );
         });
 
-      video.attributes.local_link_sub = 'processing';
-      return UpdateVideoAttributes(video)
+      attributes.local_link_sub = 'processing';
+      return UpdateVideoAttributes({ id, attributes })
         .then(() => Response.json({ data: 'processing' }, { status: 200 }))
         .catch((error) => console.log('>> video.save() error:', error));
     })

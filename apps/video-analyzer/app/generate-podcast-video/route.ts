@@ -12,6 +12,7 @@ import type { Diarization } from '@repo/helpers/generate-audio-diarization';
 import ChangeVolumeWav from '@repo/helpers/change-volume-wav';
 import MergeWavFiles from '@repo/helpers/merge-wav-files';
 import AddSilenceToWav from '@repo/helpers/add-silence-to-wav';
+import { VideoAttributesType } from '@/state/video-type';
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -36,68 +37,57 @@ export async function POST(req: NextRequest) {
   return GetVideoByID(id)
     .then(async (video) => {
       console.log('=====================================');
+      console.log('Processing get subtitles for video #', id);
+      const attributes: VideoAttributesType = { logs: video.attributes.logs };
+      attributes.logs += '\n\n> processing podcast video! \n\n';
       const originalFile = video.attributes.local_link_podcast_video;
-      console.log('Processing podacast video #', video.id);
-      video.attributes.logs += '\n\n> processing podcast video! \n\n';
-
-      const localLinkPodcast = `${video.attributes.uuid}.podcast.audio-extended.wav`;
+      const localLinkPodcast = video.attributes.local_link_podcast;
+      const uuid = video.attributes.uuid;
+      const localLinkPodcastExtended = `${uuid}.podcast.audio-extended.wav`;
+      const videoTmp = `${uuid}.podcast-video.tmp.mp4`;
+      const videoSRT = `${uuid}.podcast-video.srt.mp4`;
+      const sufix = RandomNumber(1, 99999);
+      const finalVideo = `${uuid}.podcast-video.${sufix}.mp4`;
+      const podcastDiarization = video.attributes.podcast_diarization;
+      const podcastSRT = video.attributes.podcast_srt;
 
       await AddSilenceToWav({
-        src: video.attributes.local_link_podcast,
-        dest: localLinkPodcast,
+        src: localLinkPodcast,
+        dest: localLinkPodcastExtended,
         time: 5,
         beginning: false,
       });
-      // console.log('>> AddSilenceToWav OK');
-
-      const wavLength = await GetWavLength({ src: localLinkPodcast });
-
-      // const originalVideo = `video-backgrounds/${videoBackground}.mp4`;
-      const originalVideo = videoBackground;
-
-      const videoTmp = video.attributes.uuid + '.podcast-video.tmp.mp4';
-      const videoSRT = video.attributes.uuid + '.podcast-video.srt.mp4';
-
-      const sufix = RandomNumber(1, 99999);
-      const finalVideo = `${video.attributes.uuid}.podcast-video.${sufix}.mp4`;
-
-      // const videoLength = await GetWavLength({ src: originalVideo });
-      // const setptsFactor = wavLength / videoLength;
+      const wavLength = await GetWavLength({ src: localLinkPodcastExtended });
 
       CutVideoLength({
-        src: originalVideo,
+        src: videoBackground,
         dest: videoTmp,
         to: wavLength,
       })
         .then(async () => {
-          console.log('>> CutVideoLength OK');
-          let finalAudio = localLinkPodcast;
-          console.log('>>> videoMusic', videoMusic);
-          console.log('>>> musicVolume', musicVolume);
+          let finalAudio = localLinkPodcastExtended;
           if (videoMusic) {
-            const music = `${video.attributes.uuid}.podcast-video.music.wav`;
+            const music = `${uuid}.podcast-video.music.wav`;
             await ChangeVolumeWav({
-              // src: 'media/music/piano.wav',
               src: videoMusic,
               dest: music,
               volume: musicVolume,
             });
-            finalAudio = `${video.attributes.uuid}.podcast-video.audio.wav`;
+            finalAudio = `${uuid}.podcast-video.audio.wav`;
             await MergeWavFiles({
-              files: [localLinkPodcast, music],
+              files: [localLinkPodcastExtended, music],
               dest: finalAudio,
             });
             DeleteMediaFile(`media/${music}`);
-            DeleteMediaFile(localLinkPodcast);
+            DeleteMediaFile(localLinkPodcastExtended);
           }
 
           await BurnSRTIntoVideo({
             src_video: videoTmp,
             dest_video: videoSRT,
-            srt_string: video.attributes.podcast_srt,
+            srt_string: podcastSRT,
             marginV: 10,
           });
-          // console.log('>> BurnSRTIntoVideo OK');
 
           await AddAudioToVideoInTime({
             src_video: videoSRT,
@@ -105,22 +95,20 @@ export async function POST(req: NextRequest) {
             dest: finalVideo,
             offset: 0,
           });
-          // console.log('>> AddAudioToVideoInTime OK');
 
           DeleteMediaFile(`media/${finalAudio}`);
-
           DeleteMediaFile(originalFile);
           DeleteMediaFile(`media/${videoTmp}`);
           DeleteMediaFile(`media/${videoSRT}`);
-          video.attributes.local_link_podcast_video = `media/${finalVideo}`;
+          attributes.local_link_podcast_video = `media/${finalVideo}`;
 
-          if (!video.attributes.podcast_diarization) {
-            UpdateVideoAttributes(video).catch((error) =>
+          if (!podcastDiarization) {
+            UpdateVideoAttributes({ id, attributes }).catch((error) =>
               console.log('>> video.save() error:', error)
             );
           } else {
             let diarizations: Array<Diarization> = [];
-            diarizations = JSON.parse(video.attributes.podcast_diarization);
+            diarizations = JSON.parse(podcastDiarization);
             if (
               diarizations &&
               diarizations.length &&
@@ -153,39 +141,38 @@ export async function POST(req: NextRequest) {
               });
             }
             const sufix = RandomNumber(1, 99999);
-            const newFinalVideo = `${video.attributes.uuid}.podcast-video.${sufix}.mp4`;
+            const newFinalVideo = `${uuid}.podcast-video.${sufix}.mp4`;
             AddImagesToVideo({
               src_video: `media/${finalVideo}`,
               dest: newFinalVideo,
               images,
             })
-              .then((v) => {
-                console.log('>> AddImagesToVideo:', v);
+              .then(() => {
                 DeleteMediaFile(`media/${finalVideo}`);
-                video.attributes.local_link_podcast_video = `media/${newFinalVideo}`;
-                UpdateVideoAttributes(video).catch((error) =>
+                attributes.local_link_podcast_video = `media/${newFinalVideo}`;
+                UpdateVideoAttributes({ id, attributes }).catch((error) =>
                   console.log('>> video.save() error:', error)
                 );
               })
               .catch((e) => {
                 console.log('>> AddImagesToVideo error:', e);
-                video.attributes.logs += `> Error proccessing podcast video:\n${e}\n\n`;
-                video.attributes.local_link_podcast_video = 'error';
-                UpdateVideoAttributes(video).catch((error) =>
+                attributes.logs += `> Error proccessing podcast video:\n${e}\n\n`;
+                attributes.local_link_podcast_video = 'error';
+                UpdateVideoAttributes({ id, attributes }).catch((error) =>
                   console.log('>> video.save() error:', error)
                 );
               });
           }
         })
         .catch((e) => {
-          video.attributes.logs += `> Error proccessing podcast video:\n${e}\n\n`;
-          video.attributes.local_link_podcast_video = 'error';
-          UpdateVideoAttributes(video).catch((error) =>
+          attributes.logs += `> Error proccessing podcast video:\n${e}\n\n`;
+          attributes.local_link_podcast_video = 'error';
+          UpdateVideoAttributes({ id, attributes }).catch((error) =>
             console.log('>> video.save() error:', error)
           );
         });
-      video.attributes.local_link_podcast_video = 'processing';
-      return UpdateVideoAttributes(video)
+      attributes.local_link_podcast_video = 'processing';
+      return UpdateVideoAttributes({ id, attributes })
         .then(() => Response.json({ data: 'processing' }, { status: 200 }))
         .catch((error) => console.log('>> video.save() error:', error));
     })
